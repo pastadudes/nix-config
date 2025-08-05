@@ -3,8 +3,20 @@
 
   time.timeZone = "Europe/Berlin";
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    initrd.services.udev.rules = ''
+      SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0337", MODE="0666"
+    '';
+
+    kernelParams = [
+      "quiet"
+      "intel_iommu=on"
+      "iommu=pt"
+      "pcie_ports=native"
+    ];
+  };
 
   hardware.opentabletdriver.enable = true;
 
@@ -18,6 +30,7 @@
   };
 
   hardware.apple-t2.firmware.enable = true;
+
 
   # hardware.firmware = [
   #   (pkgs.stdenvNoCC.mkDerivation (final: {
