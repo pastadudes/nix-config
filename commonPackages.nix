@@ -15,6 +15,10 @@
     chafa
     yazi
     nodejs
+		nixd
+		deadnix
+		statix
+    git
 
     # archives
     zip
@@ -54,22 +58,21 @@
     glow # markdown previewer in terminal
 
     btop  # replacement of htop/nmon
-    iotop # io monitoring
-    iftop # network monitoring
+    #iotop # io monitoring
+    #iftop # network monitoring
 
     # system call monitoring
-    strace # system call monitoring
-    ltrace # library call monitoring
-    lsof # list open files
+    #strace # system call monitoring
+    #ltrace # library call monitoring
+    #lsof # list open files
 
     # system tools
-    sysstat
-    lm_sensors # for `sensors` command
-    ethtool
-    pciutils # lspci
-    usbutils # lsusb
+    #sysstat
+    #lm_sensors # for `sensors` command
+    #ethtool
+    #pciutils # lspci
+    #usbutils # lsusb
 
   ];
-  programs.git.enable = true;
   programs.fish.enable = true;
 }

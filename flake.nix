@@ -11,22 +11,18 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
    };
 
-  outputs = { nixpkgs, nixos-hardware, ... }:
-  let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-    };
-  in {
-    formatter.${system} = pkgs.nixfmt-rfc-style;
+  outputs = { nixpkgs, nixos-hardware, nix-darwin, ... }:
 
+  {
     nixosConfigurations = {
       t2nix = nixpkgs.lib.nixosSystem {
-        inherit system;
+        system = "x86_64-linux";
         modules = [
-          ({ config, pkgs, ... }: {
+          {
             imports = [
               ./hosts/t2-firmware/t2-hardware-configuration.nix
               ./defaults.nix 
@@ -36,14 +32,14 @@
               # ./hosts/t2-firmware/pipewire_sink_conf.nix
               nixos-hardware.nixosModules.apple-t2
             ];
-          })
+          }
         ];
       };
 
       server = nixpkgs.lib.nixosSystem {
-        inherit system;
+        system = "x86_64-linux";
         modules = [
-          ({ config, pkgs, ... }: {
+          {
             imports = [
               # ./hosts/t2-hardware-configuration.nix
               ./defaults.nix 
@@ -52,9 +48,23 @@
               ./serverPackages.nix
               ./serverServices.nix
             ];
-          })
+          }
         ];
       };
     };
+    darwinConfigurations = {
+      daramd = nix-darwin.lib.darwinSystem {
+        system = "x86_64-darwin";
+        modules = [
+				  {
+   				 imports = [
+      			./darwin.nix
+						./hosts/daramd.nix
+						./darwinPackages.nix
+  					];
+					}
+				];
+			};
+		};
   };
 }
