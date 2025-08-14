@@ -11,18 +11,20 @@
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
-        AllowUsers = [ "pastaya" ];
+        AllowUsers = [ "pastaya" "bytes" ];
       };
     };
 
     nginx = {
       enable = true;
       virtualHosts."pastaya.net" = {
-        # addSSL = true;
+        addSSL = true;
         # enableACME = true; # ACME is basically uhhhh get certs
         root = "/var/www/pastaya.net";
         extraConfig = "autoindex on;";
       };
     };
+
+    networking.firewall.allowedTCPPorts = [ 80 443 ];
   };
 }
