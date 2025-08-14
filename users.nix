@@ -19,5 +19,5 @@
       nmap # after you added your packages run "sudo nixos-rebuild switch --flake /home/pastaya/nix-config#server"
     ];
   };
-  prorams.zsh.enable = true; # PLEASE DISABLE IF YOU SWITCH FROM ZSH TO ANY OTHER SHELL
+  programs.zsh.enable = true; # PLEASE DISABLE IF YOU SWITCH FROM ZSH TO ANY OTHER SHELL
 }
