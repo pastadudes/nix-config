@@ -18,7 +18,7 @@
     nginx = {
       enable = true;
       virtualHosts."pastaya.net" = {
-        addSSL = true;
+        # addSSL = true;
         # enableACME = true; # ACME is basically uhhhh get certs
         root = "/var/www/pastaya.net";
         extraConfig = "autoindex on;";
