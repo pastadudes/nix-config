@@ -16,7 +16,7 @@
       extraGroups = [ "wheel" "input" "audio" "flatpak" ];
 
       packages = with pkgs; [ # bytes add your things here DO NOT USE "nix profile install" or "nix-env"
-      nmap # after you added your packages run "just" in /etc/nixos
+      nmap # after you added your packages run "sudo nixos-rebuild switch --flake /home/pastaya/nix-config#server"
     ];
   };
   prorams.zsh.enable = true; # PLEASE DISABLE IF YOU SWITCH FROM ZSH TO ANY OTHER SHELL
