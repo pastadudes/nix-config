@@ -56,15 +56,11 @@
       daramd = nix-darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         modules = [
-				  {
-   				 imports = [
-      			./darwin.nix
-						./hosts/daramd.nix
-						./darwinPackages.nix
-  					];
-					}
-				];
-			};
-		};
+          ./darwin.nix
+          ./hosts/daramd.nix
+          ./darwinPackages.nix
+        ];
+      };
+    };
   };
 }
