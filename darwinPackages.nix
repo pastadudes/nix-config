@@ -40,6 +40,8 @@
       "supertux"
       "browserpass"
       "pass-git-helper"
+      "pinentry-mac"
+      "libiconv"
     ];
 
     casks = [
@@ -53,6 +55,7 @@
       "steam"
       "superTuxKart"
       "zoom"
+      "whatsapp"
     ];
   };
 }
