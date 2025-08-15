@@ -37,7 +37,9 @@
     # for both ordinary packages and casks
     brews = [
       "pass"
+      "supertux"
       "browserpass"
+      "pass-git-helper"
     ];
 
     casks = [
@@ -47,6 +49,10 @@
       "thunderbird"
       "tetrio"
       "krita"
+      "steamcmd"
+      "steam"
+      "superTuxKart"
+      "zoom"
     ];
   };
 }
