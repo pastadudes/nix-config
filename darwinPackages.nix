@@ -12,6 +12,7 @@
       fish
       iterm2
       taisei
+      sm64coopdx
     ];
   };
 
@@ -41,7 +42,8 @@
       "browserpass"
       "pass-git-helper"
       "pinentry-mac"
-      "libiconv"
+      "qemu"
+      "virt-manager"
     ];
 
     casks = [
@@ -56,6 +58,7 @@
       "superTuxKart"
       "zoom"
       "whatsapp"
+      "blender"
     ];
   };
 }
