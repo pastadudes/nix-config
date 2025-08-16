@@ -12,7 +12,6 @@
       fish
       iterm2
       taisei
-      sm64coopdx
     ];
   };
 
