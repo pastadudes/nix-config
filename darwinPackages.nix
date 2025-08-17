@@ -12,6 +12,7 @@
       fish
       iterm2
       taisei
+      prismlauncher
     ];
   };
 
@@ -43,6 +44,7 @@
       "pinentry-mac"
       "qemu"
       "virt-manager"
+      "mesa"
     ];
 
     casks = [
@@ -58,6 +60,10 @@
       "zoom"
       "whatsapp"
       "blender"
+      "cloudflare-warp"
+      "obs"
+      "graalvm-jdk"
+      "graalvm-jdk@17"
     ];
   };
 }
