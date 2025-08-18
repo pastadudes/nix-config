@@ -45,6 +45,7 @@
       "qemu"
       "virt-manager"
       "mesa"
+      "libiconv" # specifc fix for rust whining about it; consider using brew link
     ];
 
     casks = [
