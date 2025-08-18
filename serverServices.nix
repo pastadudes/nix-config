@@ -21,11 +21,7 @@
         # addSSL = true;
         # enableACME = true; # ACME is basically uhhhh get certs
         root = "/var/www/pastaya.net";
-        extraConfig = ''
-          autoindex on;
-          access_log /var/www/logs/access.log;
-          error_log /var/www/logs/error.log;
-        '';
+        extraConfig = "autoindex on;";
       };
     };
   };
