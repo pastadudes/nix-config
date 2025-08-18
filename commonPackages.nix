@@ -19,6 +19,8 @@
 		deadnix
 		statix
     git
+    tmux
+    
 
     # archives
     zip
