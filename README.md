@@ -4,7 +4,7 @@ its VERY special because it uh does cross platform building (nixos and nix-darwi
 i have no objections to whoever takes this just buckle up because its REALLY messy
 
 should YOU use it?  
-short answer: NO, everything is HACKY
+short answer: NO, everything is HACKY  
 long answer: if you take the time and effort to remove stuff that you dont want then yeah, BUT the code is AWFUL just know that
 
 ## todo:
