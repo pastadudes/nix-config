@@ -64,6 +64,7 @@
       "obs"
       "graalvm-jdk"
       "graalvm-jdk@17"
+      "fluent-reader"
     ];
   };
 }
