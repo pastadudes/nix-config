@@ -45,6 +45,7 @@
       "qemu"
       "virt-manager"
       "mesa"
+      "monero"
     ];
 
     casks = [
