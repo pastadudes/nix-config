@@ -65,6 +65,9 @@
       "graalvm-jdk"
       "graalvm-jdk@17"
       "fluent-reader"
+      "monero-wallet"
+      "aldente"
+      "raycast"
     ];
   };
 }
