@@ -13,6 +13,7 @@
       iterm2
       taisei
       prismlauncher
+      # TODO: uhh migrate alot of homebrew casks to here
     ];
   };
 
@@ -69,6 +70,11 @@
       "monero-wallet"
       "aldente"
       "raycast"
+      "Ollama"
+      "slippi-dolphin" # thinking about packaging the slippi launcher
+      "qbittorrent"
+      "roblox" # im sorry guys my friend just HAD to force me to play roblox with them
+      "mullvad-vpn"
     ];
   };
 }
