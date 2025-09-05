@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, lib, ... }:
+{ ... }:
 
 {
   nix.settings = {
@@ -16,4 +16,10 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  system.activationScripts.postActivation.text = ''
+    # check ../darwinServices.nix
+    sudo pmset repeat wakeorpoweron MTWRFSU 07:00:00
+
+    chsh -s /run/current-system/sw/bin/fish pastaya
+    '';
 }
