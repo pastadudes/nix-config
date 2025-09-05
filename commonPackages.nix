@@ -34,6 +34,7 @@
     yq-go # yaml processor https://github.com/mikefarah/yq
     fzf # A command-line fuzzy finder
     tlrc # too long didn't read
+    asciinema # record terminal sessions (no idea why)
     just # for justfiles obviously
     gdu
     bottom
