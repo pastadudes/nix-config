@@ -70,11 +70,11 @@
       "monero-wallet"
       "aldente"
       "raycast"
-      "Ollama"
-      "slippi-dolphin" # thinking about packaging the slippi launcher
+      "ollama"
       "qbittorrent"
       "roblox" # im sorry guys my friend just HAD to force me to play roblox with them
       "mullvad-vpn"
+      "gimp"
     ];
   };
 }

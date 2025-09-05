@@ -19,7 +19,7 @@
 		deadnix
 		statix
     git
-    tmux
+    imgcat
     
 
     # archives
@@ -33,10 +33,11 @@
     jq # A lightweight and flexible command-line JSON processor
     yq-go # yaml processor https://github.com/mikefarah/yq
     fzf # A command-line fuzzy finder
-    tldr # too long didn't read
+    tlrc # too long didn't read
     just # for justfiles obviously
     gdu
     bottom
+    tmux
 
     # misc
     cowsay
@@ -49,6 +50,7 @@
     zstd
     gnupg
     lynx
+    eza
 
     # nix related
     #
