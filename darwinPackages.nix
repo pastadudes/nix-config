@@ -13,6 +13,7 @@
       iterm2
       taisei
       prismlauncher
+      wireguard-tools
       # TODO: uhh migrate alot of homebrew casks to here
     ];
   };
@@ -47,6 +48,7 @@
       "virt-manager"
       "mesa"
       "monero"
+      "docker"
     ];
 
     casks = [
@@ -70,11 +72,15 @@
       "monero-wallet"
       "aldente"
       "raycast"
-      "ollama"
+      # "ollama"
+      #! commented this because for some fuckass reason it always uninstalls itself and i have to rebuild again for it to install
       "qbittorrent"
       "roblox" # im sorry guys my friend just HAD to force me to play roblox with them
       "mullvad-vpn"
       "gimp"
+      "docker-desktop"
+      "vlc"
+      "Macs-Fan-Control"
     ];
   };
 }

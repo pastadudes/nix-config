@@ -15,6 +15,9 @@
     chafa
     yazi
     nodejs
+    lua-language-server
+    rust-analyzer
+    wgsl-analyzer
 		nixd
 		deadnix
 		statix
@@ -36,6 +39,7 @@
     tlrc # too long didn't read
     asciinema # record terminal sessions (no idea why)
     just # for justfiles obviously
+    yadm # for dotfiles (and idk how to use home-manager)
     gdu
     bottom
     tmux
