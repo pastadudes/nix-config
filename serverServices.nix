@@ -30,7 +30,7 @@
 
       # please work
       virtualHosts."zellij.pastaya.net" = {
-        addSSL = true;
+        # addSSL = true;
         locations."/" = {
           proxyPass = "http://localhost:8082";
         };
