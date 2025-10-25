@@ -11,9 +11,14 @@
     systemPackages = with pkgs; [
       fish
       iterm2
-      taisei
-      prismlauncher
+      # taisei
+      # prismlauncher
       wireguard-tools
+      harper
+      # musescore
+      # qemu
+      # virt-manager
+      inkscape
       # TODO: uhh migrate alot of homebrew casks to here
     ];
   };
@@ -44,10 +49,9 @@
       "browserpass"
       "pass-git-helper"
       "pinentry-mac"
-      "qemu"
-      "virt-manager"
       "mesa"
       "monero"
+      "libvirt"
       "docker"
     ];
 
@@ -58,7 +62,6 @@
       "thunderbird"
       "tetrio"
       "krita"
-      "steamcmd"
       "steam"
       "superTuxKart"
       "zoom"
@@ -75,12 +78,11 @@
       # "ollama"
       #! commented this because for some fuckass reason it always uninstalls itself and i have to rebuild again for it to install
       "qbittorrent"
-      "roblox" # im sorry guys my friend just HAD to force me to play roblox with them
-      "mullvad-vpn"
       "gimp"
-      "docker-desktop"
       "vlc"
       "Macs-Fan-Control"
+      "kdenlive"
+      "wine@staging"
     ];
   };
 }

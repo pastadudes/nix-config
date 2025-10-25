@@ -4,8 +4,9 @@
     wget
     tree
     fastfetch
-    fish
+    nushell
     neovim
+    helix # its time...
     rustup
     clang
     lazygit
@@ -18,9 +19,12 @@
     lua-language-server
     rust-analyzer
     wgsl-analyzer
-		nixd
-		deadnix
-		statix
+    vscode-langservers-extracted
+    marksman
+    taplo
+    nil
+    dotnet-sdk_9 # trying c# cuz why not
+    csharp-ls
     git
     imgcat
     
@@ -42,7 +46,9 @@
     yadm # for dotfiles (and idk how to use home-manager)
     gdu
     bottom
-    tmux
+    zellij
+    aerc
+    translate-shell
 
     # misc
     cowsay
@@ -55,7 +61,7 @@
     zstd
     gnupg
     lynx
-    eza
+    carapace
 
     # nix related
     #
@@ -83,5 +89,6 @@
     #usbutils # lsusb
 
   ];
-  programs.fish.enable = true;
+  # programs.fish.enable = true;
+  nixpkgs.config.allowBroken = true;
 }
