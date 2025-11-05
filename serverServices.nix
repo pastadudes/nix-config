@@ -19,6 +19,7 @@
       };
     };
 
+    # ayo somebody remind me to uhhh switch to caddy right mate
     nginx = {
       enable = true;
 
@@ -37,7 +38,7 @@
         default = false;
 
         # haslity comment this before fixing it
-        
+
         # extraConfig = ''
         #   ssl_verify_depth 2;
         #   log_format main '$remote_addr - $remote_user [$time_local] "$request" '
@@ -45,7 +46,51 @@
         #                   '"$http_user_agent" "$http_x_forwarded_for"';
         #   access_log /var/log/nginx/access.log main;
         # '';
+
+      };
+      virtualHosts."git.pastaya.net" = {
+        locations."/" = {
+          proxyPass = "http://localhost:6000";
+        };
+      };
+
+    };
+    forgejo = {
+      enable = true;
+      user = "forgejo";
+      group = "forgejo";
+
+      stateDir = "/var/lib/forgejo";
+
+      database = {
+        type = "sqlite3";
+        path = "/var/lib/forgejo/data/forgejo.db";
+      };
+
+      settings = {
+        server = {
+          ROOT_URL = "https://git.pastaya.net/";
+          DISABLE_SSH = true; # disables builtin forgejo ssh server (cuz we already have one lmao)
+          START_SSH_SERVER = false;
+          HTTP_PORT = 6000;
+          HTTP_ADDR = "127.0.0.1";
+        };
+
+        # optional minimal setup tweaks
+        service = {
+          REGISTER_EMAIL_CONFIRM = false; # i am NOT setting up email for this
+          DISABLE_REGISTRATION = false;
+          REQUIRE_SIGNIN_VIEW = false;
+          # holy fuck so much nesting
+        };
       };
     };
   };
+  # custom user for forgejo
+  users.users.forgejo = {
+    isSystemUser = true;
+    group = "forgejo";
+    home = "/var/lib/forgejo";
+  };
+  users.groups.forgejo = { };
 }

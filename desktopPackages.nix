@@ -53,6 +53,10 @@
 
     # graphics
     intel-media-driver
+
+    # ???
+    openutau
+    zrythm
 ];
   # services.xserver.desktopManager.xterm.enable = false;
   services.xserver.excludePackages = [ pkgs.xterm ];

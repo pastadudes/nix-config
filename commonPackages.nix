@@ -62,6 +62,7 @@
     gnupg
     lynx
     carapace
+    starship
 
     # nix related
     #

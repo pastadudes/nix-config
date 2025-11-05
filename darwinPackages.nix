@@ -11,8 +11,10 @@
     systemPackages = with pkgs; [
       fish
       iterm2
+      zrythm
       # taisei
-      # prismlauncher
+      prismlauncher
+      everest-mons
       wireguard-tools
       harper
       # musescore
@@ -53,6 +55,8 @@
       "monero"
       "libvirt"
       "docker"
+      "himalaya"
+      "terminal-notifier"
     ];
 
     casks = [
@@ -85,4 +89,5 @@
       "wine@staging"
     ];
   };
+  nixpkgs.config.allowUnsupportedSystem = true;
 }
