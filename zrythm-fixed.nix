@@ -118,7 +118,6 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   buildInputs = [
-    alsa-lib
     appstream
     bash-completion
     boost
