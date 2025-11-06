@@ -22,7 +22,7 @@
     vscode-langservers-extracted
     marksman
     taplo
-    nixd
+    nil
     dotnet-sdk_9 # trying c# cuz why not
     csharp-ls
     git

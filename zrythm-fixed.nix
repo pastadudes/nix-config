@@ -196,15 +196,33 @@ stdenv.mkDerivation (finalAttrs: {
     substituteInPlace meson.build \
       --replace-fail "'/usr/lib', '/usr/local/lib', '/opt/homebrew/lib'" "'${fftw}/lib'"
 
-  ${lib.optionalString stdenv.isDarwin ''
-    # macOS 'open' isn't available in Nix sandbox, but will be at runtime (hopefully)
-    substituteInPlace meson.build \
-      --replace-fail "find_program (open_dir_cmd)" "find_program (open_dir_cmd, required: false)"
-  ''}
+    ${lib.optionalString stdenv.isDarwin ''
+      # macOS 'open' isn't available in Nix sandbox, but will be at runtime (hopefully)
+      substituteInPlace meson.build \
+        --replace-fail "find_program (open_dir_cmd)" "find_program (open_dir_cmd, required: false)"
+    ''}
 
     chmod +x scripts/meson-post-install.sh
     patchShebangs ext/sh-manpage-completions/run.sh scripts/generic_guile_wrap.sh \
       scripts/meson-post-install.sh tools/check_have_unlimited_memlock.sh
+  '';
+
+  postInstall = lib.optionalString stdenv.isDarwin ''
+    # HACK: Patch zrythm_launch after install for darwin
+    substituteInPlace $out/bin/zrythm_launch \
+      --replace-fail "ldconfig" "true" \
+      --replace-fail "gsettings" "true"
+  '';
+
+  postFixup = lib.optionalString stdenv.isDarwin ''
+    # Manually patch the rpath for the REAL binary executable,
+    # which is renamed by wrapGAppsHook4.
+    echo "Manually adding rpaths to $out/bin/.zrythm-wrapped"
+    local lib_paths=$(echo ${lib.makeLibraryPath finalAttrs.buildInputs} | sed 's/:/ /g')
+
+    for lib_path in $lib_paths; do
+      install_name_tool -add_rpath $lib_path $out/bin/.zrythm-wrapped
+    done
   '';
 
   preFixup = ''
