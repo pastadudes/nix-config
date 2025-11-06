@@ -4,7 +4,7 @@
   environment = {
     # this is so that fish gets added to /etc/shells
     shells = [
-      pkgs.fish
+      pkgs.nushell
     ];
 
     # these are installed globally to /Applications/Nix Apps/
@@ -14,7 +14,7 @@
       zrythm
       # taisei
       prismlauncher
-      everest-mons
+      # everest-mons
       wireguard-tools
       harper
       # musescore
@@ -53,7 +53,6 @@
       "pinentry-mac"
       "mesa"
       "monero"
-      "libvirt"
       "docker"
       "himalaya"
       "terminal-notifier"

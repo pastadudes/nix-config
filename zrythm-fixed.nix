@@ -156,7 +156,9 @@ stdenv.mkDerivation (finalAttrs: {
     zix
     zstd
   ]
-  ++ lib.optionals stdenv.isLinux [ alsa-lib ];
+  ++ lib.optionals stdenv.isLinux [
+    alsa-lib
+  ];
 
   # Zrythm uses meson to build, but requires cmake for dependency detection.
   dontUseCmakeConfigure = true;
@@ -172,9 +174,13 @@ stdenv.mkDerivation (finalAttrs: {
     "-Dfftw3_threads_separate_type=library"
     "-Dfftw3f_separate=false"
     "-Dlsp_dsp=disabled"
-    "-Dmanpage=true"
+    # "-Dmanpage=true"
     "-Drtaudio=enabled"
     "-Drtmidi=enabled"
+    # some darwin specifc things
+    "-Dalsa=${if stdenv.isLinux then "enabled" else "disabled"}"
+    "-Dx11=${if stdenv.isLinux then "enabled" else "disabled"}"
+    "-Dmanpage=${if stdenv.isDarwin then "false" else "true"}"
     # "-Duser_manual=true" # needs sphinx-intl
   ];
 
@@ -189,6 +195,12 @@ stdenv.mkDerivation (finalAttrs: {
   postPatch = ''
     substituteInPlace meson.build \
       --replace-fail "'/usr/lib', '/usr/local/lib', '/opt/homebrew/lib'" "'${fftw}/lib'"
+
+  ${lib.optionalString stdenv.isDarwin ''
+    # macOS 'open' isn't available in Nix sandbox, but will be at runtime (hopefully)
+    substituteInPlace meson.build \
+      --replace-fail "find_program (open_dir_cmd)" "find_program (open_dir_cmd, required: false)"
+  ''}
 
     chmod +x scripts/meson-post-install.sh
     patchShebangs ext/sh-manpage-completions/run.sh scripts/generic_guile_wrap.sh \

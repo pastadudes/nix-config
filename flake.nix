@@ -26,6 +26,7 @@
       overlays = [
         (final: prev: {
           zrythm = prev.callPackage ./zrythm-fixed.nix { };
+          carla = prev.callPackage ./carla-fixed.nix { };
         })
       ];
 
@@ -76,6 +77,19 @@
             ./darwinPackages.nix
           ];
         };
+      };
+
+      packages = {
+        x86_64-darwin =
+          let
+            pkgs = import nixpkgs {
+              system = "x86_64-darwin";
+              overlays = overlays;
+            };
+          in
+          {
+            inherit (pkgs) zrythm carla;
+          };
       };
     };
 }
