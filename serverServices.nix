@@ -55,6 +55,7 @@
       };
 
     };
+    # use gitea instead cuz it has captcha
     forgejo = {
       enable = true;
       user = "forgejo";

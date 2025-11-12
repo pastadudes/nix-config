@@ -11,7 +11,6 @@
     systemPackages = with pkgs; [
       fish
       iterm2
-      zrythm
       # taisei
       prismlauncher
       # everest-mons

@@ -11,8 +11,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    darwin.url = "github:nix-darwin/nix-darwin/master";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -20,17 +22,9 @@
       nixpkgs,
       nixos-hardware,
       nix-darwin,
+      home-manager,
       ...
     }:
-    let
-      overlays = [
-        (final: prev: {
-          zrythm = prev.callPackage ./zrythm-fixed.nix { };
-          carla = prev.callPackage ./carla-fixed.nix { };
-        })
-      ];
-
-    in
     {
       nixosConfigurations = {
         # almost basically on life support...
@@ -46,6 +40,13 @@
                 ./desktopPackages.nix
                 # ./hosts/t2-firmware/pipewire_sink_conf.nix
                 nixos-hardware.nixosModules.apple-t2
+                home-manager.nixosModules.home-manager
+                {
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+                  home-manager.users.pastaya = ./home/home.nix;
+                  home-manager.backupFileExtension = "before-home-manager";
+                }
               ];
             }
           ];
@@ -62,34 +63,38 @@
                 ./hosts/server-hardware-configuration.nix
                 ./serverPackages.nix
                 ./serverServices.nix
+                ./bytes.nix
+
+                home-manager.nixosModules.home-manager
+                {
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+                  home-manager.users.pastaya = ./home/home.nix;
+                  home-manager.backupFileExtension = "before-home-manager";
+                }
               ];
             }
           ];
         };
       };
+      
       darwinConfigurations = {
         daramd = nix-darwin.lib.darwinSystem {
           system = "x86_64-darwin";
           modules = [
-            { nixpkgs.overlays = overlays; }
             ./darwin.nix
             ./hosts/daramd.nix
             ./darwinPackages.nix
+
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.pastaya = ./home/home.nix;
+              home-manager.backupFileExtension = "before-home-manager";
+            }
           ];
         };
-      };
-
-      packages = {
-        x86_64-darwin =
-          let
-            pkgs = import nixpkgs {
-              system = "x86_64-darwin";
-              overlays = overlays;
-            };
-          in
-          {
-            inherit (pkgs) zrythm carla;
-          };
       };
     };
 }
