@@ -5,6 +5,7 @@
 {
   imports = [
     ./programs.nix
+    ./email.nix
   ];
 
   nixpkgs = {
