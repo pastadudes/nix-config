@@ -56,7 +56,7 @@
       appendConfig = ''
         stream {
           upstream mc_backend {
-            server 127.0.0.1:3000;
+            server 127.0.0.1:25565;
           }
 
           server {
@@ -109,7 +109,7 @@
       serverProperties = {
         motd = "welcome from NixOS!";
         server-ip = "";
-        server-port = 3000;
+        server-port = 25565;
       };
     };
   };
