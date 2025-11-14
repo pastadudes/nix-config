@@ -109,6 +109,7 @@
       serverProperties = {
         motd = "welcome from NixOS!";
         server-ip = "127.0.0.1";
+        server-port = 25565;
       };
     };
   };
