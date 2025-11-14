@@ -53,8 +53,7 @@
       #     proxyPass = "http://localhost:6000";
       #   };
       # };
-      appendConfig = ''
-        stream {
+      streamConfig = ''
           upstream mc_backend {
             server 127.0.0.1:25565;
           }
@@ -64,7 +63,6 @@
             proxy_pass mc_backend;
             proxy_protocol off;
           }
-        }
       '';
     };
     # use gitea instead cuz it has captcha
