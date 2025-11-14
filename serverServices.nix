@@ -60,7 +60,7 @@
           }
 
           server {
-            listen 25565;
+            listen 25566;
             proxy_pass mc_backend;
             proxy_protocol off;
           }
