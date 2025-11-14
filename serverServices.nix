@@ -108,7 +108,7 @@
       package = pkgs.papermc;
       serverProperties = {
         motd = "welcome from NixOS!";
-        server-ip = "0.0.0.0";
+        server-ip = "";
         server-port = 25565;
       };
     };
