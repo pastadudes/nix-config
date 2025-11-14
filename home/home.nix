@@ -20,7 +20,7 @@
     homeDirectory = if pkgs.stdenv.isDarwin then "/Users/pastaya" else "/home/pastaya";
 
     # pkgs = with pkgs; [
-    #   alacritty
+    #  alacritty
     # ];
 
     stateVersion = "25.05";

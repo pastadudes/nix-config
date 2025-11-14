@@ -9,7 +9,7 @@
     maildirBasePath = "mail!";
 
     accounts = {
-      main = {
+      "main!" = {
         primary = true;
         address = "pastaya@pastaya.net";
         userName = "pastaya@pastaya.net";
@@ -66,12 +66,13 @@
 
   # aerc stuff
   xdg.configFile."aerc/main-query-map".text = ''
-    inbox!=tag:unread and not tag:spam and not tag:deleted
-    personal!=tag:personal and tag:unread
-    work!=tag:work and tag:unread
+    inbox!=tag:unread
+    personal!=tag:personal
+    work!=tag:work
     sent!=tag:sent
     all!=*
     drafts!=tag:draft
-    github!=tag:github and tag:unread
+    github!=tag:github
+    archive!=tag:archive
   '';
 }

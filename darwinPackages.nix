@@ -46,15 +46,14 @@
     # for both ordinary packages and casks
     brews = [
       "pass"
-      "supertux"
       "browserpass"
       "pass-git-helper"
       "pinentry-mac"
-      "mesa"
       "monero"
       "docker"
-      "himalaya"
       "terminal-notifier"
+      "winetricks"
+      "zenity"
     ];
 
     casks = [

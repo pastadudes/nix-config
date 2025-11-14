@@ -1,12 +1,11 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     tree
     fastfetch
     nushell
-    neovim
-    helix # its time...
+    helix
     rustup
     clang
     lazygit
@@ -15,7 +14,6 @@
     python3
     chafa
     yazi
-    nodejs
     lua-language-server
     rust-analyzer
     wgsl-analyzer
@@ -25,7 +23,6 @@
     nil
     dotnet-sdk_9 # trying c# cuz why not
     csharp-ls
-    git
     imgcat
     
 
@@ -47,7 +44,6 @@
     gdu
     bottom
     zellij
-    aerc
     translate-shell
 
     # misc
@@ -74,22 +70,24 @@
     glow # markdown previewer in terminal
 
     btop  # replacement of htop/nmon
-    #iotop # io monitoring
-    #iftop # network monitoring
+  ]
+  ++ lib.optionals pkgs.stdenv.isLinux [
+    iotop # io monitoring
+    iftop # network monitoring
 
-    # system call monitoring
-    #strace # system call monitoring
-    #ltrace # library call monitoring
-    #lsof # list open files
+     system call monitoring
+    strace # system call monitoring
+    ltrace # library call monitoring
+    lsof # list open files
 
-    # system tools
-    #sysstat
-    #lm_sensors # for `sensors` command
-    #ethtool
-    #pciutils # lspci
-    #usbutils # lsusb
-
+     system tools
+    sysstat
+    lm_sensors # for `sensors` command
+    ethtool
+    pciutils # lspci
+    usbutils # lsusb
   ];
+
   # programs.fish.enable = true;
   nixpkgs.config.allowBroken = true;
 }
