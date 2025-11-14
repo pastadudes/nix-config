@@ -53,19 +53,19 @@
       #     proxyPass = "http://localhost:6000";
       #   };
       # };
-      # appendConfig = ''
-      #   stream {
-      #     upstream mc_backend {
-      #       server 127.0.0.1:3000;
-      #     }
+      appendConfig = ''
+        stream {
+          upstream mc_backend {
+            server 127.0.0.1:3000;
+          }
 
-      #     server {
-      #       listen 3000;
-      #       proxy_pass mc_backend;
-      #       proxy_protocol off;
-      #     }
-      #   }
-      # '';
+          server {
+            listen 3000;
+            proxy_pass mc_backend;
+            proxy_protocol off;
+          }
+        }
+      '';
     };
     # use gitea instead cuz it has captcha
     # forgejo = {
