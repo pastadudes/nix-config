@@ -31,7 +31,6 @@
 
   hardware.apple-t2.firmware.enable = true;
 
-
   # hardware.firmware = [
   #   (pkgs.stdenvNoCC.mkDerivation (final: {
   #     name = "brcm-firmware";

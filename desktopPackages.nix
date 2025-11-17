@@ -57,13 +57,12 @@
     # ???
     openutau
     zrythm
-];
+  ];
   # services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.excludePackages = [ pkgs.xterm ];
+  services.xserver.excludePackages = [pkgs.xterm];
   programs.firefox.enable = true;
   programs.niri.enable = true;
   programs.gamemode.enable = true;
   nixpkgs.config.allowUnfree = true;
   programs.gnupg.agent.enable = true;
 }
-

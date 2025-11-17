@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   users.users.bytes = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [

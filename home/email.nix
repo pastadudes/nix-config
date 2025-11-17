@@ -2,9 +2,7 @@
   config,
   pkgs,
   ...
-}:
-
-{
+}: {
   accounts.email = {
     maildirBasePath = "mail!";
 
@@ -40,12 +38,12 @@
           enable = true;
           create = "both";
           expunge = "both";
-          patterns = [ "*" ];
+          patterns = ["*"];
         };
 
         notmuch.enable = true;
         msmtp.enable = true;
-        
+
         aerc = {
           enable = true;
           extraAccounts = {

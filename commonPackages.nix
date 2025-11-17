@@ -1,91 +1,96 @@
-{pkgs, lib, ...}: {
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    tree
-    fastfetch
-    nushell
-    helix
-    rustup
-    clang
-    lazygit
-    fd
-    cmake
-    python3
-    chafa
-    yazi
-    lua-language-server
-    rust-analyzer
-    wgsl-analyzer
-    vscode-langservers-extracted
-    marksman
-    taplo
-    nil
-    dotnet-sdk_9 # trying c# cuz why not
-    csharp-ls
-    imgcat
-    
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  environment.systemPackages = with pkgs;
+    [
+      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      wget
+      tree
+      fastfetch
+      nushell
+      helix
+      rustup
+      clang
+      # lazygit
+      fd
+      cmake
+      python3
+      chafa
+      yazi
+      lua-language-server
+      rust-analyzer
+      wgsl-analyzer
+      vscode-langservers-extracted
+      # marksman
+      taplo
+      nil
+      dotnet-sdk_9 # trying c# cuz why not
+      csharp-ls
+      imgcat
 
-    # archives
-    zip
-    xz
-    unzip
-    p7zip
+      # archives
+      zip
+      xz
+      unzip
+      p7zip
 
-    # utils
-    ripgrep # recursively searches directories for a regex pattern
-    jq # A lightweight and flexible command-line JSON processor
-    yq-go # yaml processor https://github.com/mikefarah/yq
-    fzf # A command-line fuzzy finder
-    tlrc # too long didn't read
-    asciinema # record terminal sessions (no idea why)
-    just # for justfiles obviously
-    yadm # for dotfiles (and idk how to use home-manager)
-    gdu
-    bottom
-    zellij
-    translate-shell
+      # utils
+      ripgrep # recursively searches directories for a regex pattern
+      jq # A lightweight and flexible command-line JSON processor
+      # yq-go # yaml processor https://github.com/mikefarah/yq
+      fzf # A command-line fuzzy finder
+      tlrc # too long didn't read
+      asciinema # record terminal sessions (no idea why)
+      # just # for justfiles obviously
+      # yadm # for dotfiles (and idk how to use home-manager)
+      gdu
+      bottom
+      zellij
+      translate-shell
 
-    # misc
-    cowsay
-    file
-    which
-    tree
-    gnused
-    gnutar
-    gawk
-    zstd
-    gnupg
-    lynx
-    carapace
-    starship
+      # misc
+      cowsay
+      file
+      which
+      tree
+      gnused
+      gnutar
+      gawk
+      zstd
+      gnupg
+      lynx
+      carapace
+      starship
+      posting
 
-    # nix related
-    #
-    # it provides the command `nom` works just like `nix`
-    # with more details log output
-    nix-output-monitor
+      # nix related
+      #
+      # it provides the command `nom` works just like `nix`
+      # with more details log output
+      nix-output-monitor
 
-    # productivity
-    glow # markdown previewer in terminal
+      # productivity
+      glow # markdown previewer in terminal
 
-    btop  # replacement of htop/nmon
-  ]
-  ++ lib.optionals pkgs.stdenv.isLinux [
-    iotop # io monitoring
-    iftop # network monitoring
+      btop # replacement of htop/nmon
+    ]
+    ++ lib.optionals pkgs.stdenv.isLinux [
+      iotop # io monitoring
+      iftop # network monitoring
 
-    strace # system call monitoring
-    ltrace # library call monitoring
-    lsof # list open files
+      strace # system call monitoring
+      ltrace # library call monitoring
+      lsof # list open files
 
-    # system tools
-    sysstat
-    lm_sensors # for `sensors` command
-    ethtool
-    pciutils # lspci
-    usbutils # lsusb
-  ];
+      # system tools
+      sysstat
+      lm_sensors # for `sensors` command
+      ethtool
+      pciutils # lspci
+      usbutils # lsusb
+    ];
 
   # programs.fish.enable = true;
   nixpkgs.config.allowBroken = true;

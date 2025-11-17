@@ -1,6 +1,10 @@
-{pkgs, config,  ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   launchd = {
-      user = {
+    user = {
       # bedtime on at 11 pm
       agents = {
         bedtimeOn = {
@@ -28,7 +32,7 @@
         mbsync = {
           command = ''
             sh -c 'cd ~/mail!/main! && ${pkgs.isync}/bin/mbsync -a && ${pkgs.notmuch}/bin/notmuch new'
-            '';
+          '';
           serviceConfig = {
             UserName = "pastaya";
             StartInterval = 300; # 5 minutes in seconds
@@ -62,4 +66,3 @@
     };
   };
 }
-

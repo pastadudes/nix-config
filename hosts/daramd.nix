@@ -1,9 +1,7 @@
-{ ... }:
-
-{
+{...}: {
   nix.settings = {
     # this is required because flakes hasn't graduated into a stable feature yet
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
   };
 
   system.primaryUser = "pastaya";
@@ -17,9 +15,9 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   # system.activationScripts.postActivation.text = ''
-    # check ../darwinServices.nix
-    # sudo pmset repeat wakeorpoweron MTWRFSU 07:00:00
+  # check ../darwinServices.nix
+  # sudo pmset repeat wakeorpoweron MTWRFSU 07:00:00
 
-    # chsh -s /run/current-system/sw/bin/fish pastaya
-    # '';
+  # chsh -s /run/current-system/sw/bin/fish pastaya
+  # '';
 }

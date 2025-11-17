@@ -6,7 +6,7 @@
 
     xserver = {
       enable = true;
-      videoDrivers = [ "amdgpu" "intel" ];
+      videoDrivers = ["amdgpu" "intel"];
     };
 
     flatpak.enable = true;
@@ -29,7 +29,7 @@
         Type = "oneshot";
         ExecStart = "${pkgs.isync}/bin/mbsync -a && ${pkgs.notmuch}/bin/notmuch new";
       };
-      wantedBy = [ "default.target" ];
+      wantedBy = ["default.target"];
     };
 
     mailCleanup = {
@@ -42,7 +42,7 @@
           xargs -I {} ${pkgs.notmuch}/bin/notmuch insert --folder=~/mail!/Trash {}
         '';
       };
-      wantedBy = [ "default.target" ];
+      wantedBy = ["default.target"];
     };
   };
 
@@ -54,7 +54,7 @@
         OnUnitActiveSec = "5min";
         Unit = "mbsync.service";
       };
-      wantedBy = [ "timers.target" ];
+      wantedBy = ["timers.target"];
     };
 
     mailCleanup = {
@@ -64,7 +64,7 @@
         Persistent = true;
         Unit = "mailCleanup.service";
       };
-      wantedBy = [ "timers.target" ];
+      wantedBy = ["timers.target"];
     };
   };
 }
