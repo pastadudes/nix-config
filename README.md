@@ -9,8 +9,9 @@ long answer: if you take the time and effort to remove stuff that you dont want 
 
 ## todo:
 
-1. figure out if in nix
-2. hopefully try and migrate some homebrew packages that SHOULD be in common to commonPackages.nix (couldnt do this because i dont know if AND the nix version doesnt work for some REASON)
+1. figure out if in nix (edit: DONE!!!!!)
+2. hopefully try and migrate some homebrew packages that SHOULD be in common to commonPackages.nix (couldnt do this because i dont know if AND the nix version doesnt work for some REASON)  
+edit (soon)
 
 # FORMATTING
 run this very tuff command to GENUINELY format it

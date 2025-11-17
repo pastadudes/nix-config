@@ -6,5 +6,6 @@
     ./common.nix
     ./security.nix
     ./fonts.nix
+    ./roles.nix
   ];
 }

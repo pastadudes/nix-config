@@ -16,14 +16,16 @@
         core = {
           editor = "hx";
         };
-        delta = {
-          enable = true;
-        };
       };
       signing = {
         key = "BE7075D8224B7A628885C06D68B0CFDCFD40EA66";
         signByDefault = true;
       };
+    };
+
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
     };
 
     helix = {
@@ -776,6 +778,18 @@
       settings = {
         editor = "hx";
         git_protocol = "ssh";
+      };
+    };
+    nix-your-shell = {
+      enable = true;
+      enableNushellIntegration = true;
+    };
+    direnv = {
+      enable = true;
+      enableNushellIntegration = true;
+      silent = true;
+      nix-direnv = {
+        enable = true;
       };
     };
   };
