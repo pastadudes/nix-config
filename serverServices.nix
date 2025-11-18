@@ -95,7 +95,7 @@
     #     };
     #   };
     # };
-    minecraft-servers = {
+    minecraft-servers.servers.mcpastaya = {
       enable = true;
       openFirewall = true;
       eula = true;
