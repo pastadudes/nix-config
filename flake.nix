@@ -61,7 +61,7 @@
 
       server = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        nixpkgs.overlays = [nix-minecraft.overlay];
+        nixpkgs.overlays = [(nix-minecraft.overlay)];
         modules = [
           {
             imports = [
