@@ -15,6 +15,7 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
   };
 
   outputs = {
@@ -22,6 +23,7 @@
     nixos-hardware,
     nix-darwin,
     home-manager,
+    nix-minecraft,
     ...
   }: {
     formatter = {
@@ -59,6 +61,7 @@
 
       server = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        nixpkgs.overlays = [nix-minecraft.overlay];
         modules = [
           {
             imports = [
@@ -77,6 +80,7 @@
                 home-manager.users.pastaya = ./home/home.nix;
                 home-manager.backupFileExtension = "before-home-manager";
               }
+              nix-minecraft.nixosModules.minecraft-servers
             ];
           }
         ];
