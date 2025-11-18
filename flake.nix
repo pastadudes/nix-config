@@ -71,8 +71,10 @@
               ./serverPackages.nix
               ./serverServices.nix
               nix-minecraft.nixosModules.minecraft-servers
+              {
+                nixpkgs.overlays = [ nix-minecraft.overlay ];
+              }
               home-manager.nixosModules.home-manager
-              import (nix-minecraft.overlays)
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
