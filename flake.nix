@@ -61,7 +61,6 @@
 
       server = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        nixpkgs.overlays = [(nix-minecraft.overlay)];
         modules = [
           {
             imports = [
@@ -71,16 +70,15 @@
               ./hosts/server-hardware-configuration.nix
               ./serverPackages.nix
               ./serverServices.nix
-              ./bytes.nix
-
+              nix-minecraft.nixosModules.minecraft-servers
               home-manager.nixosModules.home-manager
+              import (nix-minecraft.overlays)
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.pastaya = ./home/home.nix;
                 home-manager.backupFileExtension = "before-home-manager";
               }
-              nix-minecraft.nixosModules.minecraft-servers
             ];
           }
         ];
