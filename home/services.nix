@@ -5,8 +5,8 @@
       enableNushellIntegration = true;
       enableSshSupport = true;
       pinentry = {
-        package = pkgs.pinentry_mac;
-        program = "pinentry-mac";
+        package = if pkgs.stdenv.isDarwin then pkgs.pinentry_mac else pkgs.pinentry-bemenu;
+        program = if pkgs.stdenv.isDarwin then "pinentry-mac" else "pinentry-bemenu";
       };
     };
   };
