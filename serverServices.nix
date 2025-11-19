@@ -6,7 +6,7 @@
   modpack = pkgs.fetchPackwizModpack {
     # TODO: pin!!!!
     url = "https://codeberg.org/pastaya/mcpastaya/raw/branch/master/pack.toml";
-    packHash = "sha256-L5RiSktqtSQBDecVfGj1iDaXV+E90zrNEcf4jtsg+wk=";
+    packHash = "sha256-Cr9re9DR+WgBm66IKILb03SzC+sod1mI9aJuVxWrSik=";
   };
   mcVersion = modpack.manifest.versions.minecraft;
   fabricVersion = modpack.manifest.versions.fabric;
