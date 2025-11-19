@@ -1,251 +1,258 @@
-{pkgs, lib, osConfig, ...}: {
-  programs = {
-    # Always enabled
-    git = {
-      enable = true;
-      settings = {
-        user = {
-          email = "contact@pastaya.net";
-          name = "pastaya";
-        };
-        core = {
-          editor = "hx";
-        };
-      };
-      signing = {
-        key = "BE7075D8224B7A628885C06D68B0CFDCFD40EA66";
-        signByDefault = true;
-      };
-    };
-
-    delta = {
-      enable = true;
-      enableGitIntegration = true;
-    };
-
-    helix = {
-      defaultEditor = true;
-      enable = true;
-      settings = {
-        editor = {
-          line-number = "relative";
-          indent-guides.render = true;
-          cursor-shape = {
-            insert = "bar";
-            normal = "block";
-            select = "underline";
+{
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}: {
+  programs =
+    {
+      # Always enabled
+      git = {
+        enable = true;
+        settings = {
+          user = {
+            email = "contact@pastaya.net";
+            name = "pastaya";
+          };
+          core = {
+            editor = "hx";
           };
         };
-        keys = {
-          normal = {
-            C-x = ":reset-diff-change";
-            space = {
-              q = ":quit";
-              x = ":x";
+        signing = {
+          key = "BE7075D8224B7A628885C06D68B0CFDCFD40EA66";
+          signByDefault = true;
+        };
+      };
+
+      delta = {
+        enable = true;
+        enableGitIntegration = true;
+      };
+
+      helix = {
+        defaultEditor = true;
+        enable = true;
+        settings = {
+          editor = {
+            line-number = "relative";
+            indent-guides.render = true;
+            cursor-shape = {
+              insert = "bar";
+              normal = "block";
+              select = "underline";
+            };
+          };
+          keys = {
+            normal = {
+              C-x = ":reset-diff-change";
+              space = {
+                q = ":quit";
+                x = ":x";
+              };
             };
           };
         };
-      };
-      languages = {
-        language-server.harper-ls = {
-          command = "${pkgs.harper}/bin/harper-ls";
-          args = ["--stdio"];
+        languages = {
+          language-server.harper-ls = {
+            command = "${pkgs.harper}/bin/harper-ls";
+            args = ["--stdio"];
+          };
+          language = [
+            {
+              name = "markdown";
+              scope = "text.markdown";
+              file-types = ["txt" "eml" "md"];
+              language-servers = ["harper-ls" "marksman"];
+            }
+          ];
         };
-        language = [
-          {
-            name = "markdown";
-            scope = "text.markdown";
-            file-types = ["txt" "eml" "md"];
-            language-servers = ["harper-ls" "marksman"];
-          }
-        ];
       };
-    };
 
-    gh = {
-      enable = true;
-      gitCredentialHelper.enable = true;
-      settings = {
-        editor = "hx";
-        git_protocol = "ssh";
-      };
-    };
-
-    direnv = {
-      enable = true;
-      enableNushellIntegration = true;
-      silent = true;
-      nix-direnv = {
+      gh = {
         enable = true;
+        gitCredentialHelper.enable = true;
+        settings = {
+          editor = "hx";
+          git_protocol = "ssh";
+        };
       };
-    };
 
-    gpg = {
-      enable = true;
-      mutableKeys = true;
-      mutableTrust = true;
-    };
-
-    carapace = {
-      enable = true;
-      enableNushellIntegration = true;
-    };
-
-    starship = {
-      enable = true;
-      enableNushellIntegration = true;
-    };
-
-    lazygit = {
-      enable = true;
-      enableNushellIntegration = true;
-      settings = {
-        # mostly the plaintext thingy from the starship presets
-        character = {
-          success_symbol = "[>](bold green)";
-          error_symbol = "[x](bold red)";
-          vimcmd_symbol = "[<](bold green)";
+      direnv = {
+        enable = true;
+        enableNushellIntegration = true;
+        silent = true;
+        nix-direnv = {
+          enable = true;
         };
-
-        git_commit.tag_symbol = " tag ";
-
-        git_status = {
-          ahead = ">";
-          behind = "<";
-          diverged = "<>";
-          renamed = "r";
-          deleted = "x";
-        };
-
-        aws.symbol = "aws ";
-        azure.symbol = "az ";
-        buf.symbol = "buf ";
-        bun.symbol = "bun ";
-        c.symbol = "C ";
-        cpp.symbol = "C++ ";
-        cobol.symbol = "cobol ";
-        conda.symbol = "conda ";
-        container.symbol = "container ";
-        crystal.symbol = "cr ";
-        cmake.symbol = "cmake ";
-        daml.symbol = "daml ";
-        dart.symbol = "dart ";
-        deno.symbol = "deno ";
-        dotnet.symbol = ".NET ";
-        directory.read_only = " ro";
-        docker_context.symbol = "docker ";
-        elixir.symbol = "exs ";
-        elm.symbol = "elm ";
-        fennel.symbol = "fnl ";
-        fossil_branch.symbol = "fossil ";
-        gcloud.symbol = "gcp ";
-        git_branch.symbol = "git ";
-        gleam.symbol = "gleam ";
-        golang.symbol = "go ";
-        gradle.symbol = "gradle ";
-        guix_shell.symbol = "guix ";
-        haskell.symbol = "haskell ";
-        helm.symbol = "helm ";
-        hg_branch.symbol = "hg ";
-        java.symbol = "java ";
-        julia.symbol = "jl ";
-        kotlin.symbol = "kt ";
-        lua.symbol = "lua ";
-        nodejs.symbol = "nodejs ";
-        memory_usage.symbol = "memory ";
-        meson.symbol = "meson ";
-        nats.symbol = "nats ";
-        nim.symbol = "nim ";
-        nix_shell.symbol = "nix ";
-        ocaml.symbol = "ml ";
-        opa.symbol = "opa ";
-
-        os.symbols = {
-          AIX = "aix ";
-          Alpaquita = "alq ";
-          AlmaLinux = "alma ";
-          Alpine = "alp ";
-          Amazon = "amz ";
-          Android = "andr ";
-          Arch = "rch ";
-          Artix = "atx ";
-          Bluefin = "blfn ";
-          CachyOS = "cach ";
-          CentOS = "cent ";
-          Debian = "deb ";
-          DragonFly = "dfbsd ";
-          Emscripten = "emsc ";
-          EndeavourOS = "ndev ";
-          Fedora = "fed ";
-          FreeBSD = "fbsd ";
-          Garuda = "garu ";
-          Gentoo = "gent ";
-          HardenedBSD = "hbsd ";
-          Illumos = "lum ";
-          Kali = "kali ";
-          Linux = "lnx ";
-          Mabox = "mbox ";
-          Macos = "mac ";
-          Manjaro = "mjo ";
-          Mariner = "mrn ";
-          MidnightBSD = "mid ";
-          Mint = "mint ";
-          NetBSD = "nbsd ";
-          NixOS = "nix ";
-          Nobara = "nbra ";
-          OpenBSD = "obsd ";
-          OpenCloudOS = "ocos ";
-          openEuler = "oeul ";
-          openSUSE = "osuse ";
-          OracleLinux = "orac ";
-          Pop = "pop ";
-          Raspbian = "rasp ";
-          Redhat = "rhl ";
-          RedHatEnterprise = "rhel ";
-          RockyLinux = "rky ";
-          Redox = "redox ";
-          Solus = "sol ";
-          SUSE = "suse ";
-          Ubuntu = "ubnt ";
-          Ultramarine = "ultm ";
-          Unknown = "unk ";
-          Uos = "uos ";
-          Void = "void ";
-          Windows = "win ";
-        };
-
-        package.symbol = "pkg ";
-        perl.symbol = "pl ";
-        php.symbol = "php ";
-        pijul_channel.symbol = "pijul ";
-        pixi.symbol = "pixi ";
-        pulumi.symbol = "pulumi ";
-        purescript.symbol = "purs ";
-        python.symbol = "py ";
-        quarto.symbol = "quarto ";
-        raku.symbol = "raku ";
-        rlang.symbol = "r ";
-        ruby.symbol = "rb ";
-        rust.symbol = "rs ";
-        scala.symbol = "scala ";
-        spack.symbol = "spack ";
-        solidity.symbol = "solidity ";
-        status.symbol = "[x](bold red) ";
-        sudo.symbol = "sudo ";
-        swift.symbol = "swift ";
-        typst.symbol = "typst ";
-        terraform.symbol = "terraform ";
-        zig.symbol = "zig ";
       };
-    };
 
-    nix-your-shell = {
-      enable = true;
-      enableNushellIntegration = true;
-    };
+      gpg = {
+        enable = true;
+        mutableKeys = true;
+        mutableTrust = true;
+      };
 
-    # not on server
-    } // lib.optionalAttrs (!osConfig.isServer) {
+      carapace = {
+        enable = true;
+        enableNushellIntegration = true;
+      };
+
+      starship = {
+        enable = true;
+        enableNushellIntegration = true;
+      };
+
+      lazygit = {
+        enable = true;
+        enableNushellIntegration = true;
+        settings = {
+          # mostly the plaintext thingy from the starship presets
+          character = {
+            success_symbol = "[>](bold green)";
+            error_symbol = "[x](bold red)";
+            vimcmd_symbol = "[<](bold green)";
+          };
+
+          git_commit.tag_symbol = " tag ";
+
+          git_status = {
+            ahead = ">";
+            behind = "<";
+            diverged = "<>";
+            renamed = "r";
+            deleted = "x";
+          };
+
+          aws.symbol = "aws ";
+          azure.symbol = "az ";
+          buf.symbol = "buf ";
+          bun.symbol = "bun ";
+          c.symbol = "C ";
+          cpp.symbol = "C++ ";
+          cobol.symbol = "cobol ";
+          conda.symbol = "conda ";
+          container.symbol = "container ";
+          crystal.symbol = "cr ";
+          cmake.symbol = "cmake ";
+          daml.symbol = "daml ";
+          dart.symbol = "dart ";
+          deno.symbol = "deno ";
+          dotnet.symbol = ".NET ";
+          directory.read_only = " ro";
+          docker_context.symbol = "docker ";
+          elixir.symbol = "exs ";
+          elm.symbol = "elm ";
+          fennel.symbol = "fnl ";
+          fossil_branch.symbol = "fossil ";
+          gcloud.symbol = "gcp ";
+          git_branch.symbol = "git ";
+          gleam.symbol = "gleam ";
+          golang.symbol = "go ";
+          gradle.symbol = "gradle ";
+          guix_shell.symbol = "guix ";
+          haskell.symbol = "haskell ";
+          helm.symbol = "helm ";
+          hg_branch.symbol = "hg ";
+          java.symbol = "java ";
+          julia.symbol = "jl ";
+          kotlin.symbol = "kt ";
+          lua.symbol = "lua ";
+          nodejs.symbol = "nodejs ";
+          memory_usage.symbol = "memory ";
+          meson.symbol = "meson ";
+          nats.symbol = "nats ";
+          nim.symbol = "nim ";
+          nix_shell.symbol = "nix ";
+          ocaml.symbol = "ml ";
+          opa.symbol = "opa ";
+
+          os.symbols = {
+            AIX = "aix ";
+            Alpaquita = "alq ";
+            AlmaLinux = "alma ";
+            Alpine = "alp ";
+            Amazon = "amz ";
+            Android = "andr ";
+            Arch = "rch ";
+            Artix = "atx ";
+            Bluefin = "blfn ";
+            CachyOS = "cach ";
+            CentOS = "cent ";
+            Debian = "deb ";
+            DragonFly = "dfbsd ";
+            Emscripten = "emsc ";
+            EndeavourOS = "ndev ";
+            Fedora = "fed ";
+            FreeBSD = "fbsd ";
+            Garuda = "garu ";
+            Gentoo = "gent ";
+            HardenedBSD = "hbsd ";
+            Illumos = "lum ";
+            Kali = "kali ";
+            Linux = "lnx ";
+            Mabox = "mbox ";
+            Macos = "mac ";
+            Manjaro = "mjo ";
+            Mariner = "mrn ";
+            MidnightBSD = "mid ";
+            Mint = "mint ";
+            NetBSD = "nbsd ";
+            NixOS = "nix ";
+            Nobara = "nbra ";
+            OpenBSD = "obsd ";
+            OpenCloudOS = "ocos ";
+            openEuler = "oeul ";
+            openSUSE = "osuse ";
+            OracleLinux = "orac ";
+            Pop = "pop ";
+            Raspbian = "rasp ";
+            Redhat = "rhl ";
+            RedHatEnterprise = "rhel ";
+            RockyLinux = "rky ";
+            Redox = "redox ";
+            Solus = "sol ";
+            SUSE = "suse ";
+            Ubuntu = "ubnt ";
+            Ultramarine = "ultm ";
+            Unknown = "unk ";
+            Uos = "uos ";
+            Void = "void ";
+            Windows = "win ";
+          };
+
+          package.symbol = "pkg ";
+          perl.symbol = "pl ";
+          php.symbol = "php ";
+          pijul_channel.symbol = "pijul ";
+          pixi.symbol = "pixi ";
+          pulumi.symbol = "pulumi ";
+          purescript.symbol = "purs ";
+          python.symbol = "py ";
+          quarto.symbol = "quarto ";
+          raku.symbol = "raku ";
+          rlang.symbol = "r ";
+          ruby.symbol = "rb ";
+          rust.symbol = "rs ";
+          scala.symbol = "scala ";
+          spack.symbol = "spack ";
+          solidity.symbol = "solidity ";
+          status.symbol = "[x](bold red) ";
+          sudo.symbol = "sudo ";
+          swift.symbol = "swift ";
+          typst.symbol = "typst ";
+          terraform.symbol = "terraform ";
+          zig.symbol = "zig ";
+        };
+      };
+
+      nix-your-shell = {
+        enable = true;
+        enableNushellIntegration = true;
+      };
+
+      # not on server
+    }
+    // lib.optionalAttrs (!osConfig.isServer) {
       alacritty = {
         enable = true;
         settings = {
@@ -254,7 +261,10 @@
             ipc_socket = true;
           };
           window = {
-            padding = { x = 12; y = 12; };
+            padding = {
+              x = 12;
+              y = 12;
+            };
             decorations = "buttonless";
             opacity = lib.mkForce 0.7;
             blur = true;
