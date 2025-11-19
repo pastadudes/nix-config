@@ -122,7 +122,7 @@ in {
           package = pkgs.fabricServers.${serverVersion}.override {loaderVersion = fabricVersion;};
           serverProperties = {
             motd = "welcome from NixOS!";
-            server-port = 3000;
+            enable-nether = false;
           };
 
           symlinks = {
