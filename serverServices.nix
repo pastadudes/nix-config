@@ -1,4 +1,17 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  modpack = pkgs.fetchPackwizModpack {
+    # TODO: pin!!!!
+    url = "https://codeberg.org/pastaya/mcpastaya/raw/branch/master/pack.toml";
+    packHash = "sha256-L5RiSktqtSQBDecVfGj1iDaXV+E90zrNEcf4jtsg+wk=";
+  };
+  mcVersion = modpack.manifest.versions.minecraft;
+  fabricVersion = modpack.manifest.versions.fabric;
+  serverVersion = lib.replaceStrings ["."] ["_"] "fabric-${mcVersion}";
+in {
   services = {
     xserver.enable = false;
 
@@ -95,24 +108,26 @@
     #     };
     #   };
     # };
-    minecraft-server = {
+
+    minecraft-servers = {
       enable = true;
-      openFirewall = true;
-      declarative = true;
       eula = true;
-      # good luck
-      jvmOpts = "-Xms2G -Xmx3G -XX:+UseG1GC -Djava.net.preferIPv4Stack=true -XX:+UnlockExperimentalVMOptions -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:MaxGCPauseMillis=75 -XX:G1HeapRegionSize=8M -XX:InitiatingHeapOccupancyPercent=20 -XX:G1NewSizePercent=20 -XX:G1ReservePercent=15 -XX:SurvivorRatio=16";
-      package = pkgs.fabricServers.fabric;
-      serverProperties = {
-        motd = "welcome from NixOS!";
+
+      servers = {
+        mcpastaya = {
+          enable = true;
+          openFirewall = true;
+          jvmOpts = "-Xms2G -Xmx3G -XX:+UseG1GC -Djava.net.preferIPv4Stack=true -XX:+UnlockExperimentalVMOptions -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:MaxGCPauseMillis=75 -XX:G1HeapRegionSize=8M -XX:InitiatingHeapOccupancyPercent=20 -XX:G1NewSizePercent=20 -XX:G1ReservePercent=15 -XX:SurvivorRatio=16";
+          package = pkgs.fabricServers.${serverVersion}.override {loaderVersion = fabricVersion;};
+          serverProperties = {
+            motd = "welcome from NixOS!";
+          };
+
+          symlinks = {
+            "mods" = "${modpack}/mods";
+          };
+        };
       };
     };
   };
-  # custom user for forgejo
-  # users.users.forgejo = {
-  #   isSystemUser = true;
-  #   group = "forgejo";
-  #   home = "/var/lib/forgejo";
-  # };
-  # users.groups.forgejo = { };
 }

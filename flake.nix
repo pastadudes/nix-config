@@ -72,7 +72,7 @@
               ./serverServices.nix
               nix-minecraft.nixosModules.minecraft-servers
               {
-                nixpkgs.overlays = [ nix-minecraft.overlay ];
+                nixpkgs.overlays = [nix-minecraft.overlay];
               }
               home-manager.nixosModules.home-manager
               {
