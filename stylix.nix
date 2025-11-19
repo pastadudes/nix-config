@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   stylix = {
     enable = true;
     base16Scheme = {
@@ -21,6 +21,26 @@
       base0E = "#a292a3";
       base0F = "#b6927b";
     };
+    fonts = {
+      serif = {
+        package = pkgs.nerd-fonts.bigblue-terminal;
+        name = "BigBlueTermPlus Nerd Font";
+      };
+
+      sansSerif = {
+        package = pkgs.nerd-fonts.bigblue-terminal;
+        name = "BigBlueTermPlus Nerd Font";
+      };
+
+      monospace = {
+        package = pkgs.nerd-fonts.bigblue-terminal;
+        name = "BigBlueTermPlus Nerd Font Mono";
+      };
+
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
+      };
+    };
   };
-  # TODO: add font
 }

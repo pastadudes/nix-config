@@ -48,12 +48,9 @@
       "pass"
       "browserpass"
       "pass-git-helper"
-      "pinentry-mac"
+      # "pinentry-mac"
       "monero"
       "docker"
-      "terminal-notifier"
-      "winetricks"
-      "zenity"
     ];
 
     casks = [
@@ -86,5 +83,4 @@
       "wine@staging"
     ];
   };
-  nixpkgs.config.allowUnsupportedSystem = true;
 }
