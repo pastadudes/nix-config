@@ -1,9 +1,15 @@
-{pkgs, ...}: {
-  imports = [
-    ./programs.nix
-    ./email.nix
-    ./services.nix
-  ];
+{
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}: {
+  imports =
+    [
+      ./programs.nix
+      ./email.nix
+    ]
+    ++ lib.optionals (!osConfig.isServer) [./services.nix];
 
   nixpkgs = {
     config = {
