@@ -1,4 +1,4 @@
-{pkgs, lib, config, ...}: {
+{pkgs, lib, osConfig, ...}: {
   programs = {
     # Always enabled
     git = {
@@ -245,7 +245,7 @@
     };
 
     # not on server
-    } // lib.optionalAttrs (!config.isServer) {
+    } // lib.optionalAttrs (!osConfig.isServer) {
       alacritty = {
         enable = true;
         settings = {
