@@ -7,6 +7,7 @@
     ./darwinServices.nix
     ./users.nix
     ./roles.nix
+    ./stylix.nix
   ];
 
   security.pam.services.sudo_local.touchIdAuth = true; # touch id with sudo (if you couldn't tell)

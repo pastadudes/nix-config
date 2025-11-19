@@ -16,6 +16,10 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -24,6 +28,7 @@
     nix-darwin,
     home-manager,
     nix-minecraft,
+    stylix,
     ...
   }: {
     formatter = {
@@ -46,7 +51,9 @@
               ./desktopServices.nix
               ./desktopPackages.nix
               # ./hosts/t2-firmware/pipewire_sink_conf.nix
+              stylix.nixosModules.stylix
               nixos-hardware.nixosModules.apple-t2
+
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
@@ -74,6 +81,7 @@
               {
                 nixpkgs.overlays = [nix-minecraft.overlay];
               }
+              stylix.nixosModules.stylix
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
@@ -95,6 +103,7 @@
           ./hosts/daramd.nix
           ./darwinPackages.nix
 
+          stylix.darwinModules.stylix
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

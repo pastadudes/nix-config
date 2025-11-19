@@ -32,7 +32,7 @@
       defaultEditor = true;
       enable = true;
       settings = {
-        theme = "base16_transparent";
+        # theme = "base16_transparent";
         editor = {
           line-number = "relative";
           indent-guides.render = true;
@@ -259,59 +259,59 @@
           blinking = "On";
         };
 
-        colors = {
-          # kanso zen alacritty colors
-          # nixifed from kanso.nvim/extras
-          primary = {
-            background = "#090E13";
-            foreground = "#C5C9C7";
-          };
+        # colors = {
+        #   # kanso zen alacritty colors
+        #   # nixifed from kanso.nvim/extras
+        #   primary = {
+        #     background = "#090E13";
+        #     foreground = "#C5C9C7";
+        #   };
 
-          normal = {
-            black = "#090E13";
-            red = "#c4746e";
-            green = "#8a9a7b";
-            yellow = "#c4b28a";
-            blue = "#8ba4b0";
-            magenta = "#a292a3";
-            cyan = "#8ea4a2";
-            white = "#c8c093";
-          };
+        #   normal = {
+        #     black = "#090E13";
+        #     red = "#c4746e";
+        #     green = "#8a9a7b";
+        #     yellow = "#c4b28a";
+        #     blue = "#8ba4b0";
+        #     magenta = "#a292a3";
+        #     cyan = "#8ea4a2";
+        #     white = "#c8c093";
+        #   };
 
-          bright = {
-            black = "#A4A7A4";
-            red = "#e46876";
-            green = "#87a987";
-            yellow = "#e6c384";
-            blue = "#7fb4ca";
-            magenta = "#938aa9";
-            cyan = "#7aa89f";
-            white = "#C5C9C7";
-          };
+        #   bright = {
+        #     black = "#A4A7A4";
+        #     red = "#e46876";
+        #     green = "#87a987";
+        #     yellow = "#e6c384";
+        #     blue = "#7fb4ca";
+        #     magenta = "#938aa9";
+        #     cyan = "#7aa89f";
+        #     white = "#C5C9C7";
+        #   };
 
-          selection = {
-            background = "#393B44";
-            foreground = "#C5C9C7";
-          };
+        #   selection = {
+        #     background = "#393B44";
+        #     foreground = "#C5C9C7";
+        #   };
 
-          indexed_colors = [
-            {
-              index = 16;
-              color = "#b6927b";
-            }
-            {
-              index = 17;
-              color = "#b98d7b";
-            }
-          ];
-        };
+        #   indexed_colors = [
+        #     {
+        #       index = 16;
+        #       color = "#b6927b";
+        #     }
+        #     {
+        #       index = 17;
+        #       color = "#b98d7b";
+        #     }
+        #   ];
+        # };
       };
     };
 
     zellij = {
       enable = true;
       settings = {
-        theme = "kanso";
+        # theme = "kanso";
         default_shell = "nu";
         web_server = true;
       };
@@ -419,25 +419,25 @@
         }
       '';
 
-      themes = {
-        kanso = {
-          themes = {
-            kanso = {
-              bg = "#090E13";
-              fg = "#C5C9C7";
-              red = "#C4746E";
-              green = "#8A9A7B";
-              blue = "#8BA4B0";
-              yellow = "#C4B28A";
-              magenta = "#A292A3";
-              orange = "#B98D7B";
-              cyan = "#8EA4A2";
-              black = "#090E13";
-              white = "#C5C9C7";
-            };
-          };
-        };
-      };
+      # themes = {
+      #   kanso = {
+      #     themes = {
+      #       kanso = {
+      #         bg = "#090E13";
+      #         fg = "#C5C9C7";
+      #         red = "#C4746E";
+      #         green = "#8A9A7B";
+      #         blue = "#8BA4B0";
+      #         yellow = "#C4B28A";
+      #         magenta = "#A292A3";
+      #         orange = "#B98D7B";
+      #         cyan = "#8EA4A2";
+      #         black = "#090E13";
+      #         white = "#C5C9C7";
+      #       };
+      #     };
+      #   };
+      # };
     };
 
     carapace = {
@@ -450,9 +450,9 @@
       enableNushellIntegration = true;
       settings = {
         # mostly the plaintext thingy from the starship presets
-        success_symbol = "[>](bold green)";
+        # success_symbol = "[>](bold green)";
         # error_symbol = "[x](bold red)";
-        vimcmd_symbol = "[<](bold green)";
+        # vimcmd_symbol = "[<](bold green)";
 
         git_commit.tag_symbol = " tag ";
 
@@ -609,5 +609,8 @@
         enable = true;
       };
     };
+    # gpg = {
+    #   enable = true;
+    # };
   };
 }
