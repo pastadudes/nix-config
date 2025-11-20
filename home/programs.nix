@@ -100,11 +100,6 @@
       starship = {
         enable = true;
         enableNushellIntegration = true;
-      };
-
-      lazygit = {
-        enable = true;
-        enableNushellIntegration = true;
         settings = {
           # mostly the plaintext thingy from the starship presets
           character = {
@@ -243,6 +238,11 @@
           terraform.symbol = "terraform ";
           zig.symbol = "zig ";
         };
+      };
+
+      lazygit = {
+        enable = true;
+        enableNushellIntegration = true;
       };
 
       nix-your-shell = {
