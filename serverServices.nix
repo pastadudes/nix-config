@@ -4,8 +4,8 @@
   ...
 }: let
   modpack = pkgs.fetchPackwizModpack {
-    url = "https://codeberg.org/pastaya/mcpastaya/raw/tag/v1.5.2/pack.toml";
-    packHash = "sha256-erOrCCKUwWB82Z++5avkTu/S/A/BV9VXB0PldIRHgsQ=";
+    url = "https://codeberg.org/pastaya/mcpastaya/raw/tag/v1.6.0/pack.toml";
+    packHash = "sha256-erOrCCKUwWB82Z++5avkTu/S/A/BV9VuB0PldIRHgsQ=";
   };
   mcVersion = modpack.manifest.versions.minecraft;
   fabricVersion = modpack.manifest.versions.fabric;
@@ -117,7 +117,7 @@ in {
           enable = true;
           openFirewall = true;
           jvmOpts = "-Xms512M -Xmx3G -XX:+UseG1GC -Djava.net.preferIPv4Stack=true -XX:+UnlockExperimentalVMOptions -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:MaxGCPauseMillis=75 -XX:G1HeapRegionSize=8M -XX:InitiatingHeapOccupancyPercent=20 -XX:G1NewSizePercent=20 -XX:G1ReservePercent=15 -XX:SurvivorRatio=16";
-          package = pkgs.fabricServers.${serverVersion}.override {loaderVersion = fabricVersion; jre_headless = pkgs.graalvmPackages.graalvm-oracle;};
+          package = pkgs.fabricServers.${serverVersion}.override { loaderVersion = fabricVersion; };
           serverProperties = {
             motd = "\"lifestyle\" server lmao";
             allow-nether = false;
