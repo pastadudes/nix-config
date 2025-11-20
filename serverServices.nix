@@ -4,8 +4,8 @@
   ...
 }: let
   modpack = pkgs.fetchPackwizModpack {
-    url = "https://codeberg.org/pastaya/mcpastaya/raw/tag/v1.5.1/pack.toml";
-    packHash = "sha256-schF3+SLgrC/5JSzSNKoO84lsXogBoMwaTaz3DuUR04=";
+    url = "https://codeberg.org/pastaya/mcpastaya/raw/tag/v1.5.2/pack.toml";
+    packHash = "sha256-0axfs27sid784hdp2z08si0a8q2i909sg6qr04jyx78hm3z0siq3";
   };
   mcVersion = modpack.manifest.versions.minecraft;
   fabricVersion = modpack.manifest.versions.fabric;
