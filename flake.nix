@@ -17,7 +17,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     stylix = {
-      url = "github:konradmalik/stylix/fix-hm-integration-icons";
+      url = "github:nix-community/stylix/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

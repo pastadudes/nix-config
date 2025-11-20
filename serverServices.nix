@@ -4,7 +4,7 @@
   ...
 }: let
   modpack = pkgs.fetchPackwizModpack {
-    url = "https://codeberg.org/pastaya/mcpastaya/raw/tag/v1.1.0/pack.toml";
+    url = "https://codeberg.org/pastaya/mcpastaya/raw/tag/v1.5.1/pack.toml";
     packHash = "sha256-Cr9re9DR+WgBm66IKILb03SzC+sod1mI9aJuVxWrSik=";
   };
   mcVersion = modpack.manifest.versions.minecraft;
@@ -109,24 +109,30 @@ in {
     # };
 
     minecraft-servers = {
-      # sorry guys my server operator has to attend a family matter
       enable = true;
       eula = true;
 
       servers = {
         mcpastaya = {
-          # sorry guys my server operator has to attend a family matter
           enable = true;
           openFirewall = true;
-          jvmOpts = "-Xms2G -Xmx3G -XX:+UseG1GC -Djava.net.preferIPv4Stack=true -XX:+UnlockExperimentalVMOptions -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:MaxGCPauseMillis=75 -XX:G1HeapRegionSize=8M -XX:InitiatingHeapOccupancyPercent=20 -XX:G1NewSizePercent=20 -XX:G1ReservePercent=15 -XX:SurvivorRatio=16";
+          jvmOpts = "-Xms512M -Xmx3G -XX:+UseG1GC -Djava.net.preferIPv4Stack=true -XX:+UnlockExperimentalVMOptions -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:MaxGCPauseMillis=75 -XX:G1HeapRegionSize=8M -XX:InitiatingHeapOccupancyPercent=20 -XX:G1NewSizePercent=20 -XX:G1ReservePercent=15 -XX:SurvivorRatio=16";
           package = pkgs.fabricServers.${serverVersion}.override {loaderVersion = fabricVersion;};
           serverProperties = {
-            motd = "welcome from NixOS!";
-            enable-nether = false;
+            motd = "\"lifestyle\" server lmao";
+            allow-nether = false;
           };
 
           symlinks = {
             "mods" = "${modpack}/mods";
+          };
+
+          operators = {
+            pastaya = {
+              uuid = "6edf8619-ce16-4ca5-b5af-299169b524ed";
+              level = 3;
+              bypassesPlayerLimit = true;
+            };
           };
         };
       };
