@@ -109,8 +109,9 @@ in {
     # };
 
     minecraft-servers = {
-      enable = false;
+      enable = true;
       eula = true;
+      dataDir = /mc;
 
       servers = {
         mcpastaya = {
@@ -120,6 +121,7 @@ in {
           package = pkgs.fabricServers.${serverVersion}.override {loaderVersion = fabricVersion;};
           serverProperties = {
             motd = "\"lifestyle\" server lmao";
+            server-port = 25566;
             allow-nether = false;
           };
 
