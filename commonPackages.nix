@@ -9,8 +9,6 @@
       wget
       tree
       fastfetch
-      nushell
-      helix
       rustup
       clang
       # lazygit
@@ -25,7 +23,7 @@
       vscode-langservers-extracted
       # marksman
       taplo
-      nil
+      nixd
       dotnet-sdk_9 # trying c# cuz why not
       csharp-ls
       imgcat
@@ -45,9 +43,6 @@
       asciinema # record terminal sessions (no idea why)
       # just # for justfiles obviously
       # yadm # for dotfiles (and idk how to use home-manager)
-      gdu
-      bottom
-      zellij
       translate-shell
 
       # misc
@@ -59,10 +54,8 @@
       gnutar
       gawk
       zstd
-      gnupg
       lynx
       carapace
-      starship
       posting
 
       # nix related

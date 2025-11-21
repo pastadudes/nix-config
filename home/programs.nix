@@ -2,6 +2,7 @@
   pkgs,
   lib,
   osConfig,
+  config,
   ...
 }: {
   programs =
@@ -245,12 +246,26 @@
         enableNushellIntegration = true;
       };
 
-      nix-your-shell = {
+      nushell = {
         enable = true;
-        enableNushellIntegration = true;
+        package = pkgs.nushell;
+        envFile.source = ./nushell/env.nu;
+        configFile.source = ./nushell/config.nu;
+        plugins = [pkgs.nushellPlugins.highlight];
+        shellAliases = {
+          gl = ''
+            git log --pretty=%h»¦«%aN»¦«%s»¦«%aD | lines | split column \"»¦«\" sha1 committer desc merged | first 10
+          '';
+        };
       };
 
-      # not on server
+      nh = {
+        enable = true;
+        flake = "${config.home.homeDirectory}/nix-config";
+        clean = {
+          enable = true;
+        };
+      };
     }
     // lib.optionalAttrs (!osConfig.isServer) {
       alacritty = {

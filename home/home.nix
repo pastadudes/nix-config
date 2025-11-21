@@ -28,6 +28,21 @@
     # pkgs = with pkgs; [
     #  alacritty
     # ];
+    shell = {
+      enableNushellIntegration = true;
+    };
+
+    shellAliases = {
+      "gp" = "git push";
+      "gs" = "git status";
+      "icat" = "imgcat";
+      "lg" = "lazygit";
+      "v" = "nvim";
+      "y" = "yazi";
+      "gc" = "git commit -S";
+      "ga" = "git add";
+      "..." = "cd ../../";
+    };
 
     stateVersion = "25.05";
   };

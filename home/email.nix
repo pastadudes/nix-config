@@ -32,6 +32,7 @@
         gpg = {
           key = "BE7075D8224B7A628885C06D68B0CFDCFD40EA66";
           signByDefault = true;
+          encryptByDefault = true;
         };
 
         mbsync = {

@@ -111,7 +111,7 @@ in {
     minecraft-servers = {
       enable = true;
       eula = true;
-      dataDir = /mc;
+      dataDir = "/mc";
 
       servers = {
         mcpastaya = {
@@ -141,7 +141,7 @@ in {
     };
 
     minecraft-server = {
-      enable = true;
+      enable = false;
       eula = true;
       openFirewall = true;
       jvmOpts = "-Xms512M -Xmx3G -XX:+UseG1GC -Djava.net.preferIPv4Stack=true -XX:+UnlockExperimentalVMOptions -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:MaxGCPauseMillis=75 -XX:G1HeapRegionSize=8M -XX:InitiatingHeapOccupancyPercent=20 -XX:G1NewSizePercent=20 -XX:G1ReservePercent=15 -XX:SurvivorRatio=16";
