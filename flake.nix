@@ -20,6 +20,9 @@
       url = "github:nix-community/stylix/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixcord = {
+      url = "github:kaylorben/nixcord";
+    };
   };
 
   outputs = {
@@ -30,7 +33,7 @@
     nix-minecraft,
     stylix,
     ...
-  }: {
+  }@inputs: {
     formatter = {
       x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
       aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.alejandra;
@@ -56,6 +59,7 @@
 
               home-manager.nixosModules.home-manager
               {
+                home-manager.extraSpecialArgs = { inherit inputs; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.pastaya = ./home/home.nix;
@@ -84,6 +88,7 @@
               stylix.nixosModules.stylix
               home-manager.nixosModules.home-manager
               {
+                home-manager.extraSpecialArgs = { inherit inputs; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.pastaya = ./home/home.nix;
@@ -106,6 +111,7 @@
           stylix.darwinModules.stylix
           home-manager.darwinModules.home-manager
           {
+            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.pastaya = ./home/home.nix;

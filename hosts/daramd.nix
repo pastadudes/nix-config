@@ -1,4 +1,4 @@
-{config, ...}: {
+{config, pkgs, ...}: {
   config = {
     system.primaryUser = "pastaya";
     isServer = false;
@@ -10,6 +10,7 @@
       gc = {
         automatic = true;
       };
+      package = pkgs.lix;
     };
 
     networking.hostName = "daramd";

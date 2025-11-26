@@ -46,11 +46,10 @@
     # for both ordinary packages and casks
     brews = [
       "pass"
-      "browserpass"
+      # "browserpass"
       "pass-git-helper"
       # "pinentry-mac"
       "monero"
-      "docker"
     ];
 
     casks = [

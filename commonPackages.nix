@@ -26,7 +26,6 @@
       nixd
       dotnet-sdk_9 # trying c# cuz why not
       csharp-ls
-      imgcat
 
       # archives
       zip
@@ -58,13 +57,6 @@
       carapace
       posting
 
-      # nix related
-      #
-      # it provides the command `nom` works just like `nix`
-      # with more details log output
-      nix-output-monitor
-
-      # productivity
       glow # markdown previewer in terminal
 
       btop # replacement of htop/nmon
@@ -86,5 +78,4 @@
     ];
 
   # programs.fish.enable = true;
-  nixpkgs.config.allowBroken = true;
 }

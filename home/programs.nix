@@ -16,7 +16,17 @@
             name = "pastaya";
           };
           core = {
-            editor = "hx";
+            editor = "${pkgs.helix}/bin/hx";
+          };
+          alias = {
+            a  = "add";
+            aa = "add -A";
+            ci = "commit";
+            cl = "clone";
+            co = "checkout";
+            d  = "diff";
+            dc = "diff --cached";
+            st = "status";
           };
         };
         signing = {
@@ -251,10 +261,11 @@
         package = pkgs.nushell;
         envFile.source = ./nushell/env.nu;
         configFile.source = ./nushell/config.nu;
-        plugins = [pkgs.nushellPlugins.highlight];
+        plugins = [ pkgs.nushellPlugins.highlight ];
         shellAliases = {
+          # broken
           gl = ''
-            git log --pretty=%h»¦«%aN»¦«%s»¦«%aD | lines | split column \"»¦«\" sha1 committer desc merged | first 10
+            git log --pretty=%h»¦«%aN»¦«%s»¦«%aD | lines | split column "»¦«" sha1 committer desc merged | first 10
           '';
         };
       };
@@ -493,6 +504,494 @@
               welcome-screen location="zellij:session-manager" { welcome_screen true; }
           }
         '';
+      };
+      qutebrowser = {
+        enable = true;
+        greasemonkey = [
+          (pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/afreakk/greasemonkeyscripts/69df2b309eae2af18bb1d1ff1790f1d92d8e6a5d/youtube_shorts_block.js";
+            sha256 = "09lfbqphdv78l44z1b2ryba46pz4srpyswpapmi86cl41d485nkv";
+          })
+          
+          (pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/afreakk/greasemonkeyscripts/69df2b309eae2af18bb1d1ff1790f1d92d8e6a5d/youtube_sponsorblock.js";
+            sha256 = "1ccqg60m4if1gdhq92v50sfpwz81l2a3r55iwjqgy738xmsml0wz";
+          })
+          
+          (pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/afreakk/greasemonkeyscripts/69df2b309eae2af18bb1d1ff1790f1d92d8e6a5d/youtube_adblock.js";
+            sha256 = "1mskjnprva2zcwkmdz0m8by7zj840i9c1i30mbgs6v69h9bgs803";
+          })
+        ];
+        settings = {
+          colors.webpage.darkmode.enabled = true;
+        };
+      };
+
+      rio = {
+        enable = true;
+        settings = {
+          confirm-before-quit = false;
+          padding-x = 10;
+
+          editor = {
+            program = "${pkgs.helix}/bin/hx";
+          };
+          cursor = {
+            shape = "beam";
+            blinking = true;
+          };
+          navigation = {
+            mode = "Plain";
+          };
+          shell = {
+            program = "${pkgs.nushell}/bin/nu";
+          };
+          renderer = {
+            fliters = [
+              "fubax_br"
+            ];
+          };
+          window = {
+            opacity = lib.mkForce 0.7;
+            blur = true;
+            decorations = "Transparent";
+            mode = "Maximized";
+          };
+          fonts = {
+            size = lib.mkForce 12;
+            bold = {
+              weight = 600;
+            };
+            regular = {
+              weight = 400;
+            };
+            italic = {
+              weight = 400;
+            };
+            bold-italic = {
+              weight = 600;
+            };
+          };
+          platform = {
+            macos = {
+              option-as-alt = "left";
+            };
+          };
+        };
+      };
+
+      nixcord = {
+        enable = true;
+        discord = {
+          enable = true;
+          vencord.enable = false;
+          equicord.enable = true;
+        };
+        config = {
+          autoUpdate = true;
+          autoUpdateNotification = true;
+          transparent = true;
+          useQuickCss = true;
+
+          plugins = {
+            usrbg = {
+              enable = true;
+            };
+
+            alwaysExpandRoles.enable = true;
+
+            animalese = {
+              enable = true;
+            };
+            anonymiseFileNames = {
+              enable = true;
+              anonymiseByDefault = false;
+            };
+            betterAudioPlayer = {
+              enable = true;
+              # derived from `.angled-header h1` from pastaya.net
+              # original hex color `#ffaf00`
+              oscilloscopeColor = "255, 175, 0"; # nixcord why isn't this a list?
+            };
+            betterBlockedUsers.enable = true;
+            betterCommands = {
+              enable = true;
+            };
+
+            betterGifAltText.enable = true;
+            betterGifPicker.enable = true;
+            betterInvites.enable = true;
+            betterPlusReacts.enable = true;
+
+            betterQuickReact = {
+              enable = true;
+            };
+            betterRoleContext = {
+              enable = true;
+            };
+            betterRoleDot = {
+              enable = true;
+            };
+            betterSessions = {
+              enable = true;
+            };
+            betterSettings = {
+              enable = true;
+            };
+
+            betterUploadButton.enable = true;
+            biggerStreamPreview.enable = true;
+
+            blockKeywords = {
+              enable = true;
+              # TW: very bad words, sorry! i don't mean anything here!
+              # yo codeberg pls don't ban me
+              blockedWords = ''
+                (?i)\btroo(n|nie|ny|ns|m)\b,
+                (?i)i['’` ]?m\s+maga,
+                (?i)\bnigg(a|er|ers)?\b,
+                (?i)\bfag(got|gots|s)?\b,
+                (?i)\bretard(s|ed|ing)?\b
+              '';
+              useRegex = true;
+            };
+            callTimer = {
+              enable = true;
+            };
+            characterCounter = {
+              enable = true;
+            };
+
+            clearURLs.enable = true;
+
+            clipsEnhancements = {
+              enable = true;
+            };
+            commandPalette = {
+              enable = false;
+              visualStyle = "polished";
+            };
+            consoleJanitor = {
+              enable = true;
+            };
+
+            copyFileContents.enable = true;
+            copyStickerLinks.enable = true;
+            copyUserURLs.enable = true;
+
+            customTimestamps = {
+              enable = true;
+            };
+            dearrow = {
+              enable = true;
+            };
+            decodeBase64 = {
+              enable = true;
+            };
+
+            decor.enable = true;
+            dontFilterMe.enable = true;
+
+            exportMessages = {
+              enable = true;
+              exportContacts = true;
+            };
+
+            expressionCloner.enable = true;
+            f8Break.enable = true;
+
+            fakeNitro = {
+              enable = true;
+            };
+            fakeProfileThemes = {
+              enable = true;
+            };
+
+            favoriteEmojiFirst.enable = true;
+
+            favoriteGifSearch = {
+              enable = true;
+            };
+            findReply = {
+              enable = true;
+              includeAuthor = true;
+              includePings = true;
+            };
+
+            fixCodeblockGap.enable = true;
+            fixFileExtensions.enable = true;
+            fixImagesQuality.enable = true;
+
+            fixSpotifyEmbeds = {
+              enable = true;
+            };
+
+            fixYoutubeEmbeds.enable = true;
+
+            followVoiceUser = {
+              enable = true;
+            };
+            fontLoader = {
+              enable = true;
+            };
+
+            forceOwnerCrown.enable = true;
+            frequentQuickSwitcher.enable = true;
+            friendCloud.enable = true;
+            friendInvites.enable = true;
+
+            friendTags = {
+              enable = false; # maybe???
+            };
+
+            friendsSince.enable = true;
+            friendshipRanks.enable = true;
+            fullSearchContext.enable = true;
+
+            gameActivityToggle = {
+              enable = true;
+            };
+            gensokyoRadioRpc = {
+              enable = true;
+            };
+            ghosted = {
+              enable = true;
+              scary = true;
+            };
+
+            gifPaste.enable = true;
+
+            gitHubRepos = {
+              enable = true;
+            };
+            globalBadges = {
+              enable = true;
+            };
+            googleThat = {
+              enable = true;
+              defaultEngine = "LetMeGoogleThatForYou";
+            };
+            greetStickerPicker = {
+              enable = true;
+            };
+            guildPickerDumper.enable = true;
+            imageFilename = {
+              enable = true;
+              showFullUrl = true;
+            };
+            imageZoom = {
+              enable = true;
+              nearestNeighbour = true;
+              # giant lens size for not seeing the lens
+              size = 5000.0;
+            };
+            imgToGif.enable = true;
+            implicitRelationships = {
+              enable = true;
+            };
+            inviteDefaults = {
+              enable = true;
+            };
+            ircColors = {
+              enable = true;
+              # color is used to identify perms in servers quickly
+              applyColorOnlyInDms = true;
+            };
+
+            jumpTo.enable = true;
+            keepCurrentChannel.enable = true;
+
+            keyboardNavigation = {
+              enable = false;
+            };
+            keyboardSounds = {
+              enable = true; # might turn this off lw
+              soundPack = "osu";
+            };
+            memberCount = {
+              enable = true;
+            };
+            mentionAvatars = {
+              enable = true;
+            };
+            messageBurst = {
+              enable = true;
+              shouldMergeWithAttachment = true;
+            };
+            messageClickActions = {
+              enable = true;
+            };
+
+            messageColors.enable = true;
+
+            messageFetchTimer = {
+              enable = true;
+            };
+            messageLatency = {
+              enable = true;
+              showMillis = true;
+            };
+            messageLinkEmbeds = {
+              enable = true;
+            };
+            messageLogger = {
+              enable = true;
+              collapseDeleted = true;
+            };
+
+            messageLoggerEnhanced.enable = true;
+
+            messageTranslate = {
+              enable = true;
+            };
+
+            moreCommands.enable = true;
+            moreKaomoji.enable = true;
+
+            moreStickers = {
+              enable = true;
+            };
+
+            moreUserTags.enable = true;
+            musicControls.enable = true;
+            mutualGroupDMs.enable = true;
+            noNitroUpsell.enable = false; # risky...
+            noOnboardingDelay.enable = true;
+            noTypingAnimation.enable = true;
+            noUnblockToJump.enable = true;
+            normalizeMessageLinks.enable = true;
+
+            notificationTitle.enable = true;
+            onePingPerDM = {
+              enable = true;
+            };
+
+            pauseInvitesForever.enable = true;
+
+            permissionsViewer = {
+              enable = true;
+            };
+            platformIndicators = {
+              enable = true;
+            };
+            quickReply = {
+              enable = true;
+            };
+
+            reactErrorDecoder.enable = true;
+            readAllNotificationsButton.enable = true;
+
+            # i swear im not weird its only for servers i get booted off
+            relationshipNotifier = {
+              enable = true;
+              friends = false;
+              notices = true;
+            };
+            replaceGoogleSearch = {
+              enable = true;
+              customEngineName = "DuckDuckGo";
+              customEngineUrl = "https://duckduckgo.com/search?q=";
+            };
+
+            replyTimestamp.enable = true;
+            reverseImageSearch.enable = true;
+            reviewDB.enable = true;
+
+            sekaiStickers = {
+              enable = true;
+            };
+            sendTimestamps = {
+              enable = true;
+            };
+            serverInfo = {
+              enable = true;
+            };
+            serverListIndicators = {
+              enable = true;
+            };
+
+            serverSearch.enable = true;
+
+            shikiCodeblocks = {
+              enable = true;
+              bgOpacity = 80.0;
+              useDevIcon = "COLOR";
+            };
+            showConnections = {
+              enable = true;
+            };
+            showHiddenChannels = {
+              enable = true;
+            };
+
+            showHiddenThings.enable = true;
+            showMessageEmbeds.enable = true;
+
+            silentMessageToggle = {
+              enable = true;
+            };
+            # not even a huge fan of streaming services or even music in general
+            songLink = {
+              enable = true;
+            };
+            splitLargeMessages = {
+              enable = true;
+            };
+            spotifyCrack = {
+              enable = true;
+            };
+
+            startupTimings.enable = true;
+            talkInReverse.enable = true;
+            tiktokTts.enable = true;
+
+            toneIndicators = {
+              enable = true;
+            };
+
+            tosuRpc.enable = true;
+
+            typingIndicator = {
+              enable = true;
+            };
+            typingTweaks = {
+              enable = true;
+            };
+
+            unindent.enable = true;
+
+            unitConverter = {
+              enable = true;
+              myUnits = "metric"; # ew im not an american
+            };
+            universalMention = {
+              enable = true;
+            };
+
+            validReply.enable = true;
+            validUser.enable = true;
+
+            viewRaw = {
+              enable = true;
+            };
+            voiceMessages = {
+              enable = true;
+            };
+
+            webRichPresence.enable = true;
+
+            whoReacted = {
+              enable = true;
+            };
+            whosWatching = {
+              enable = true;
+            };
+
+            youtubeAdblock.enable = true;
+            youtubeDescription.enable = true;
+          };
+        };
       };
     };
 }
