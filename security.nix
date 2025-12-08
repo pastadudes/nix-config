@@ -4,18 +4,17 @@
   pkgs,
   ...
 }:
-{
-  security =
-    {
-    }
-    // lib.optionalAttrs pkgs.stdenv.isDarwin {
-      pam.services.sudo_local.touchIdAuth = true; # touch id with sudo (if you couldn't tell)
-    }
-    // lib.optionalAttrs pkgs.stdenv.isLinux {
-      sudo.enable = true;
-      sudo.configFile = "%wheel ALL=(ALL:ALL) SETENV: ALL";
-    };
-}
-// lib.optionalAttrs config.isServer {
-  networking.firewall.allowedTCPPorts = [80 443 8082 25565 25566];
-}
+lib.mkMerge [
+  (lib.mkIf pkgs.stdenv.isDarwin {
+    security.pam.services.sudo_local.touchIdAuth = true;
+  })
+
+  (lib.mkIf pkgs.stdenv.isLinux {
+    security.sudo.enable = true;
+    security.sudo.configFile = "%wheel ALL=(ALL:ALL) SETENV: ALL";
+  })
+
+  (lib.mkIf config.isServer {
+    networking.firewall.allowedTCPPorts = [80 443 8082 25565 25566];
+  })
+]
