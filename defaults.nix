@@ -1,7 +1,5 @@
 # defaults.nix
 {
-  lib,
-  pkgs,
   ...
 }: {
   imports =
@@ -13,9 +11,5 @@
       ./fonts.nix
       ./roles.nix
       ./stylix.nix
-    ]
-    ++ lib.optionals pkgs.stdenv.isDarwin [
-      ./darwinPackages.nix
-      ./darwinServices.nix
     ];
 }

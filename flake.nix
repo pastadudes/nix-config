@@ -132,6 +132,7 @@
           ./darwin.nix
           ./hosts/daramd.nix
           ./darwinPackages.nix
+          ./darwinServices.nix
 
           stylix.darwinModules.stylix
           home-manager.darwinModules.home-manager
