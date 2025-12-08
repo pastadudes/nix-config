@@ -107,7 +107,8 @@
               ./defaults.nix
               ./hosts/nixos-vm.nix
               ./desktopServices.nix
-              # ./hosts/t2-firmware/pipewire_sink_conf.nix
+              ./desktopPackages.nix
+              ./hosts/nixos-vm-hardware-configuration.nix
               stylix.nixosModules.stylix
 
               home-manager.nixosModules.home-manager
