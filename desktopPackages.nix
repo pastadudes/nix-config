@@ -35,7 +35,8 @@
     prismlauncher
     tetrio-desktop
     osu-lazer-bin
-    taisei
+    # its borked
+    # taisei
 
     # terminal emulator
     foot
@@ -59,7 +60,7 @@
     zrythm
   ];
   # services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.excludePackages = [pkgs.xterm];
+  services.xserver.excludePackages = [ pkgs.xterm ];
   programs.firefox.enable = true;
   programs.niri.enable = true;
   programs.gamemode.enable = true;
