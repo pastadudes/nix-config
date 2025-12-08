@@ -99,8 +99,28 @@
         ];
       };
 
-      basic = nixpkgs.lib.nixosSystem {
+      nixos-vim = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        modules = [
+          {
+            imports = [
+              ./defaults.nix
+              ./hosts/nixos-vm.nix
+              ./desktopServices.nix
+              # ./hosts/t2-firmware/pipewire_sink_conf.nix
+              stylix.nixosModules.stylix
+
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.extraSpecialArgs = {inherit inputs;};
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.pastaya = ./home/home.nix;
+                home-manager.backupFileExtension = "before-home-manager";
+              }
+            ];
+          }
+        ];
       };
     };
 
