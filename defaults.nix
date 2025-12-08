@@ -1,4 +1,4 @@
-# i want flake.nix to atleast be like idk? 1.5 pages tall or long or whatever
+# defaults.nix
 {
   lib,
   pkgs,
@@ -14,7 +14,7 @@
       ./roles.nix
       ./stylix.nix
     ]
-    ++ lib.optional pkgs.stdenv.isDarwin [
+    ++ lib.optionals pkgs.stdenv.isDarwin [
       ./darwinPackages.nix
       ./darwinServices.nix
     ];
