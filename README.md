@@ -16,6 +16,6 @@ edit (soon)
 # FORMATTING
 run this very tuff command to GENUINELY format it
 ```bash
-nix run nixpkgs#fd -- --type f --extension nix -x nix fmt {}
+nix fmt
 ```
 tank you
