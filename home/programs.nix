@@ -15,24 +15,68 @@
             email = "contact@pastaya.net";
             name = "pastaya";
           };
+
+          diff = {
+            algorithm = "histogram";
+            colorMoved = "default";
+          };
+
           core = {
             editor = "${pkgs.helix}/bin/hx";
           };
+
+          color = {
+            ui = "auto";
+          };
+
+          rerere = {
+            enabled = true;
+            autoupdate = true;
+          };
+
+          rebase = {
+            autosquash = true;
+          };
+
           alias = {
-            a  = "add";
+            a = "add";
             aa = "add -A";
             ci = "commit";
             cl = "clone";
             co = "checkout";
-            d  = "diff";
+            cob = "checkout -b";
+            d = "diff";
             dc = "diff --cached";
             st = "status";
+            lg = "log --graph --decorate --all";
+            lgs = "log --graph --decorate --all --stat";
+            pushf = "push --force-with-lease";
+            amend = "commit --amend --no-edit";
+            mergclean = "!git branch --merged | grep -v 'main\|develop\|master' | xargs -n 1 git branch -d";
+          };
+          init = {
+            defaultBranch = "master";
+          };
+          gc = {
+            auto = 256;
+            writeCommitGraph = true;
+          };
+          merge = {
+            conflictStyle = "zdiff3";
+          };
+          push = {
+            autoSetupRemote = true;
           };
         };
+
         signing = {
           key = "BE7075D8224B7A628885C06D68B0CFDCFD40EA66";
           signByDefault = true;
         };
+      };
+
+      fastfetch = {
+        enable = true;
       };
 
       delta = {
@@ -77,6 +121,11 @@
             }
           ];
         };
+      };
+
+      password-store = {
+        enable = true;
+        package = pkgs.pass.withExtensions (exts: [exts.pass-otp]);
       };
 
       gh = {
@@ -261,7 +310,7 @@
         package = pkgs.nushell;
         envFile.source = ./nushell/env.nu;
         configFile.source = ./nushell/config.nu;
-        plugins = [ pkgs.nushellPlugins.highlight ];
+        plugins = [pkgs.nushellPlugins.highlight];
         shellAliases = {
           # broken
           gl = ''
@@ -512,12 +561,12 @@
             url = "https://raw.githubusercontent.com/afreakk/greasemonkeyscripts/69df2b309eae2af18bb1d1ff1790f1d92d8e6a5d/youtube_shorts_block.js";
             sha256 = "09lfbqphdv78l44z1b2ryba46pz4srpyswpapmi86cl41d485nkv";
           })
-          
+
           (pkgs.fetchurl {
             url = "https://raw.githubusercontent.com/afreakk/greasemonkeyscripts/69df2b309eae2af18bb1d1ff1790f1d92d8e6a5d/youtube_sponsorblock.js";
             sha256 = "1ccqg60m4if1gdhq92v50sfpwz81l2a3r55iwjqgy738xmsml0wz";
           })
-          
+
           (pkgs.fetchurl {
             url = "https://raw.githubusercontent.com/afreakk/greasemonkeyscripts/69df2b309eae2af18bb1d1ff1790f1d92d8e6a5d/youtube_adblock.js";
             sha256 = "1mskjnprva2zcwkmdz0m8by7zj840i9c1i30mbgs6v69h9bgs803";
@@ -599,10 +648,15 @@
               enable = true;
             };
 
+            anammox = {
+              enable = true;
+            };
+
+            amITyping.enable = true;
             alwaysExpandRoles.enable = true;
 
             animalese = {
-              enable = true;
+              # enable = true;
             };
             anonymiseFileNames = {
               enable = true;
@@ -691,7 +745,6 @@
             };
 
             decor.enable = true;
-            dontFilterMe.enable = true;
 
             exportMessages = {
               enable = true;
@@ -775,7 +828,9 @@
             greetStickerPicker = {
               enable = true;
             };
+
             guildPickerDumper.enable = true;
+
             imageFilename = {
               enable = true;
               showFullUrl = true;

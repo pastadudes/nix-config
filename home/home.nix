@@ -25,19 +25,22 @@
       then "/Users/pastaya"
       else "/home/pastaya";
 
-    # pkgs = with pkgs; [
-    #  alacritty
-    # ];
+    packages = with pkgs; [
+      rusty-man
+      bat
+    ];
 
     shell = {
       enableNushellIntegration = true;
     };
 
     shellAliases = {
-      icat  = "chafa";
-      lg    = "lazygit";
-      ".."  = "cd ../";
+      icat = "chafa";
+      lg = "lazygit";
+      ".." = "cd ../";
       "..." = "cd ../../";
+      "...." = "cd ../../../";
+      "....." = "cd ../../../../";
     };
 
     stateVersion = "25.05";

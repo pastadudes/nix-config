@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   launchd = {
     user = {
       # bedtime on at 11 pm
@@ -35,7 +31,7 @@
           '';
           serviceConfig = {
             UserName = "pastaya";
-            StartInterval = 300; # 5 minutes in seconds
+            StartInterval = 60; # 1 minute in seconds
             RunAtLoad = true;
             StandardErrorPath = "/Users/pastaya/Library/Logs/mbsync.err.log";
             StandardOutPath = "/Users/pastaya/Library/Logs/mbsync.out.log";
