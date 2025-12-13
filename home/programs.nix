@@ -574,6 +574,11 @@
         ];
         settings = {
           colors.webpage.darkmode.enabled = true;
+          editor = {
+            command = [ "${pkgs.helix}/bin/hx" "{file}" ];
+          };
+          content.pdfjs = true;
+          scrolling.smooth = true;
         };
       };
 

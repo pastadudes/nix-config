@@ -11,7 +11,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # using nixos-unstable because i also have nixos on the same flake
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    darwin.url = "github:nix-darwin/nix-darwin/master";
+    darwin.url = "/Users/pastaya/forks/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -23,6 +23,7 @@
     nixcord = {
       url = "github:kaylorben/nixcord";
     };
+    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs = {
@@ -32,6 +33,7 @@
     home-manager,
     nix-minecraft,
     stylix,
+    niri,
     ...
   } @ inputs: {
     formatter = {
@@ -88,7 +90,7 @@
               stylix.nixosModules.stylix
               home-manager.nixosModules.home-manager
               {
-                home-manager.extraSpecialArgs = {inherit inputs;};
+                home-manager.extraSpecialArgs = { inherit inputs; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.pastaya = ./home/home.nix;
@@ -113,7 +115,7 @@
 
               home-manager.nixosModules.home-manager
               {
-                home-manager.extraSpecialArgs = {inherit inputs;};
+                home-manager.extraSpecialArgs = { inherit inputs; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.pastaya = ./home/home.nix;
@@ -137,7 +139,7 @@
           stylix.darwinModules.stylix
           home-manager.darwinModules.home-manager
           {
-            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.pastaya = ./home/home.nix;
