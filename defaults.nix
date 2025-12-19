@@ -1,4 +1,3 @@
-# defaults.nix
 {...}: {
   imports = [
     ./commonPackages.nix

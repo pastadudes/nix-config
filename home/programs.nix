@@ -43,17 +43,69 @@
             aa = "add -A";
             ci = "commit";
             cl = "clone";
-            co = "checkout";
-            cob = "checkout -b";
+            st = "status";
             d = "diff";
             dc = "diff --cached";
-            st = "status";
-            lg = "log --graph --decorate --all";
+
+            sw = "switch";
+            swc = "switch -c";
+
+            lg = "log --graph --decorate --oneline -20";
+            lgu = "log --graph --decorate --oneline @{u}..";
+            lga = "log --graph --decorate --oneline --all";
             lgs = "log --graph --decorate --all --stat";
+
             pushf = "push --force-with-lease";
             amend = "commit --amend --no-edit";
-            mergclean = "!git branch --merged | grep -v 'main\|develop\|master' | xargs -n 1 git branch -d";
+
+            fixup = "commit --fixup";
+
+            # behold
+            mergclean = ''
+              !f() {
+                remote=origin
+                dry=0
+
+                while [ "$#" -gt 0 ]; do
+                  case "$1" in
+                    --remote)
+                      remote="$2"
+                      shift 2
+                      ;;
+                    --dry-run)
+                      dry=1
+                      shift
+                      ;;
+                    *)
+                      shift
+                      ;;
+                  esac
+                done
+
+                git fetch "$remote" --prune
+
+                branches=$(
+                  git branch -r --merged \
+                    | grep -Ev "^$remote/(HEAD|main|develop|master)$" \
+                    | sed "s|$remote/||"
+                )
+
+                if [ -z "$branches" ]; then
+                  echo "mergclean: no merged branches to delete on $remote"
+                  exit 0
+                fi
+
+                echo "$branches" | while read b; do
+                  if [ "$dry" -eq 1 ]; then
+                    echo "would delete $\{remote}/$\{b}!"
+                  else
+                    git push "$remote" --delete "$b"
+                  fi
+                done
+              }; f
+            '';
           };
+
           init = {
             defaultBranch = "master";
           };
@@ -66,6 +118,7 @@
           };
           push = {
             autoSetupRemote = true;
+            default = "simple";
           };
         };
 
@@ -575,7 +628,7 @@
         settings = {
           colors.webpage.darkmode.enabled = true;
           editor = {
-            command = [ "${pkgs.helix}/bin/hx" "{file}" ];
+            command = ["${pkgs.helix}/bin/hx" "{file}"];
           };
           content.pdfjs = true;
           scrolling.smooth = true;
@@ -815,7 +868,7 @@
             };
             ghosted = {
               enable = true;
-              scary = true;
+              # scary = true;
             };
 
             gifPaste.enable = true;

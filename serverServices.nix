@@ -154,17 +154,17 @@ in {
   };
   systemd.services = {
     cbg-runner = {
-    description = "the systemd service that runs uhhhh cbg";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" ];
-    serviceConfig = {
-      User = "pastaya";
-      Group = "users";
-      WorkingDirectory = "/home/pastaya/cbg";
-      ExecStart = "${pkgs.lix}/bin/nix develop --command cargo run --release";
-      Restart = "always";
-      RestartSec = 5;
-    };
+      description = "the systemd service that runs uhhhh cbg";
+      wantedBy = ["multi-user.target"];
+      after = ["network.target"];
+      serviceConfig = {
+        User = "pastaya";
+        Group = "users";
+        WorkingDirectory = "/home/pastaya/cbg";
+        ExecStart = "${pkgs.lix}/bin/nix develop --command cargo run --release";
+        Restart = "always";
+        RestartSec = 5;
+      };
     };
   };
 }

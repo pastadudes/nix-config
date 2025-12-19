@@ -13,7 +13,7 @@
       ];
 
       # basic for NOW
-      modules-center = [ "systemd-failed-units" ];
+      modules-center = ["systemd-failed-units"];
     };
   };
 }

@@ -5,7 +5,13 @@
 
     networking.firewall = {
       enable = true;
-      allowedTCPPorts = [22];
+      allowedTCPPorts = [
+        80
+        443
+        8082
+        25565
+        25566
+      ];
     };
 
     boot.loader.grub.enable = true;

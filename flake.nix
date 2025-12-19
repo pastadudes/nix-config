@@ -90,7 +90,7 @@
               stylix.nixosModules.stylix
               home-manager.nixosModules.home-manager
               {
-                home-manager.extraSpecialArgs = { inherit inputs; };
+                home-manager.extraSpecialArgs = {inherit inputs;};
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.pastaya = ./home/home.nix;
@@ -115,7 +115,7 @@
 
               home-manager.nixosModules.home-manager
               {
-                home-manager.extraSpecialArgs = { inherit inputs; };
+                home-manager.extraSpecialArgs = {inherit inputs;};
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.pastaya = ./home/home.nix;
@@ -139,7 +139,7 @@
           stylix.darwinModules.stylix
           home-manager.darwinModules.home-manager
           {
-            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.extraSpecialArgs = {inherit inputs;};
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.pastaya = ./home/home.nix;
