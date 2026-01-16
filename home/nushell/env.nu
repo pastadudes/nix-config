@@ -1,13 +1,13 @@
-$env.PATH ++= ["/run/current-system/sw/bin", "/etc/profiles/per-user/pastaya/bin", "~/.cargo/bin"]
-$env.PAGER = ^less
+$env.PATH ++= ["/run/current-system/sw/bin", $"/etc/profiles/per-user/($env.USER)/bin", $"($env.HOME)/.cargo/bin"] 
+$env.PAGER = "less -R"
 
-# i realized that some other shells have extra vars i don't have
-$env.NIX_PATH = ["nixpkgs=flake:nixpkgs", "/nix/var/nix/profiles/per-user/root/channels"]
+$env.NIX_PATH=nixpkgs=flake:nixpkgs:/nix/var/nix/profiles/per-user/root/channels
+
 $env.NIX_PROFILES = [
     "/nix/var/nix/profiles/default", 
     "/run/current-system/sw", 
     "/etc/profiles/per-user/pastaya", 
-    "$HOME/.nix-profile"
+    $"($env.HOME)/.nix-profile"
 ]
 
 $env.NIX_SSL_CERT_FILE = "/etc/ssl/certs/ca-certificates.crt"

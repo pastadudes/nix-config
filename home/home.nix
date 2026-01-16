@@ -9,8 +9,9 @@
     [
       ./programs.nix
       ./email.nix
+      ./programs
     ]
-    ++ lib.optionals (!osConfig.isServer) [./services.nix inputs.nixcord.homeModules.nixcord];
+    ++ lib.optionals (!osConfig.isServer) [./services.nix];
 
   nixpkgs = {
     config = {

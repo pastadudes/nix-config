@@ -10,7 +10,6 @@
     # these are installed globally to /Applications/Nix Apps/
     systemPackages = with pkgs; [
       fish
-      iterm2
       # taisei
       prismlauncher
       # everest-mons
@@ -42,25 +41,12 @@
       "amar1729/formulae"
     ];
 
-    # `brew list <>` can help pinpoint package name
-    # for both ordinary packages and casks
-    brews = [
-      "pass"
-      # "browserpass"
-      "pass-git-helper"
-      # "pinentry-mac"
-      "monero"
-    ];
-
     casks = [
-      "librewolf"
       "osu"
       "discord"
-      "thunderbird"
       "tetrio"
       "krita"
       "steam"
-      "superTuxKart"
       "zoom"
       "whatsapp"
       "blender"
@@ -69,11 +55,8 @@
       "graalvm-jdk"
       "graalvm-jdk@17"
       "fluent-reader"
-      "monero-wallet"
       "aldente"
       "raycast"
-      # "ollama"
-      #! commented this because for some fuckass reason it always uninstalls itself and i have to rebuild again for it to install
       "qbittorrent"
       "gimp"
       "vlc"

@@ -1,12 +1,13 @@
 {
-  nixConfig = {
-    extra-substituters = [
-      "https://cache.soopy.moe"
-    ];
-    extra-trusted-public-keys = [
-      "cache.soopy.moe-1:0RZVsQeR+GOh0VQI9rvnHz55nVXkFardDqfm4+afjPo="
-    ];
-  };
+  # let's disable this for a while
+  # nixConfig = {
+  #   extra-substituters = [
+  #     "https://cache.soopy.moe"
+  #   ];
+  #   extra-trusted-public-keys = [
+  #     "cache.soopy.moe-1:0RZVsQeR+GOh0VQI9rvnHz55nVXkFardDqfm4+afjPo="
+  #   ];
+  # };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # using nixos-unstable because i also have nixos on the same flake
@@ -20,16 +21,13 @@
       url = "github:nix-community/stylix/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixcord = {
-      url = "github:kaylorben/nixcord";
-    };
     niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs = {
     nixpkgs,
     nixos-hardware,
-    nix-darwin,
+    darwin,
     home-manager,
     nix-minecraft,
     stylix,
@@ -128,7 +126,7 @@
     };
 
     darwinConfigurations = {
-      daramd = nix-darwin.lib.darwinSystem {
+      daramd = darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         modules = [
           ./darwin.nix

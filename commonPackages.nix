@@ -11,21 +11,22 @@
       fastfetch
       rustup
       clang
-      # lazygit
       fd
-      cmake
-      python3
       chafa
       yazi
       lua-language-server
       rust-analyzer
       wgsl-analyzer
       vscode-langservers-extracted
-      # marksman
       taplo
-      nixd
-      dotnet-sdk_9 # trying c# cuz why not
+      nil
+      dotnet-sdk_10 # trying c# cuz why not
       csharp-ls
+      # roslyn-ls
+      # typescript-language-server
+      # bun
+      # kotlin
+      # kotlin-language-server
 
       # archives
       zip
@@ -56,6 +57,7 @@
       lynx
       carapace
       posting
+      cmigemo
 
       glow # markdown previewer in terminal
 
