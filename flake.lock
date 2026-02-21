@@ -431,11 +431,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1771689823,
-        "narHash": "sha256-vy9M4XdajVwufaQOmxN0hHl4S3e8/rczdipKUVbRDA8=",
+        "lastModified": 1771693887,
+        "narHash": "sha256-xNuBmR8FbEBku4LqU+d60eMQ5aMKhwuk46IdEXLoCOE=",
         "ref": "refs/heads/master",
-        "rev": "43a7ebb3f14dc47bd970c3774ecd1ee041bf6a0e",
-        "revCount": 40,
+        "rev": "7985dce87a44a16add43e40e9a5d44c2b331ed0f",
+        "revCount": 41,
         "type": "git",
         "url": "https://codeberg.org/pjcs/pjcs"
       },
