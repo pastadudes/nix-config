@@ -56,6 +56,7 @@
               ./desktopServices.nix
               ./desktopPackages.nix
               ./common/linux.nix
+              ./security/linux.nix
               # ./hosts/t2-firmware/pipewire_sink_conf.nix
               stylix.nixosModules.stylix
               nixos-hardware.nixosModules.apple-t2
@@ -85,6 +86,7 @@
               ./serverPackages.nix
               ./serverServices.nix
               ./common/linux.nix
+              ./security/linux.nix
               nix-minecraft.nixosModules.minecraft-servers
               {
                 nixpkgs.overlays = [nix-minecraft.overlay];
@@ -114,6 +116,7 @@
               ./desktopPackages.nix
               ./hosts/nixos-vm-hardware-configuration.nix
               ./common/linux.nix
+              ./security/linux.nix
               stylix.nixosModules.stylix
 
               home-manager.nixosModules.home-manager

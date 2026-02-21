@@ -2,7 +2,7 @@
 {...}: {
   imports = [
     ./common/darwin.nix
-    ./security.nix
+    ./security/darwin.nix
     ./commonPackages.nix
     ./fonts.nix
     ./darwinPackages.nix

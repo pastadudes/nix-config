@@ -3,7 +3,7 @@
     ./commonPackages.nix
     ./users.nix
     # ./common.nix
-    ./security.nix
+    # ./security.nix
     ./fonts.nix
     ./roles.nix
     ./stylix.nix
