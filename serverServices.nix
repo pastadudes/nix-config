@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  pjcs,
+  inputs,
   ...
 }: let
   modpack = pkgs.fetchPackwizModpack {
@@ -11,6 +11,8 @@
   mcVersion = modpack.manifest.versions.minecraft;
   fabricVersion = modpack.manifest.versions.fabric;
   serverVersion = lib.replaceStrings ["."] ["_"] "fabric-${mcVersion}";
+
+  pjcs = inputs.pjcs.packages.x86_64-linux.default;
 in {
   services = {
     xserver.enable = false;
@@ -161,7 +163,7 @@ in {
       serviceConfig = {
         User = "pastaya";
         Group = "users";
-        ExecStart = "${pjcs.packages.x86_64-linux.default}/bin/pjcs.bot";
+        ExecStart = "${pjcs}/bin/pjcs.bot";
         Restart = "always";
         RestartSec = 5;
 
