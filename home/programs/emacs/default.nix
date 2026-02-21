@@ -1,35 +1,36 @@
 {...}: {
   programs.emacs = {
     enable = true;
-    extraPackages = epkgs: with epkgs; [
-      magit
-      magit-delta
-      which-key
-      rust-mode
-      nix-ts-mode
-      corfu
-      kind-icon
-      cape
-      notmuch
-      vertico
-      consult
-      orderless
-      vterm
-      typescript-mode
-      treesit-auto
-      kotlin-ts-mode
-      envrc
-      avy
-      marginalia
-      embark
-      embark-consult
-      tempel
-      tempel-collection
-      haskell-mode
-      purescript-mode
-      zig-mode
-      dart-mode
-    ];
+    extraPackages = epkgs:
+      with epkgs; [
+        magit
+        magit-delta
+        which-key
+        rust-mode
+        nix-ts-mode
+        corfu
+        kind-icon
+        cape
+        notmuch
+        vertico
+        consult
+        orderless
+        vterm
+        typescript-mode
+        treesit-auto
+        kotlin-ts-mode
+        envrc
+        avy
+        marginalia
+        embark
+        embark-consult
+        tempel
+        tempel-collection
+        haskell-mode
+        purescript-mode
+        zig-mode
+        dart-mode
+      ];
   };
   home.file.".emacs.d" = {
     enable = true;

@@ -51,15 +51,15 @@
         #   language-servers = ["deno-lsp"];
         # }
         # {
-          # name = "c-sharp";
-          # scope = "source.csharp";
-          # injection-regex = "c-?sharp";
-          # file-types = ["cs" "csx" "cake"];
-          # roots = ["sln" "csproj"];
-          # # comment-tokens = ["//" "///"];
-          # # block-comment-tokens = { start = "/*"; end = "*/"; };
-          # indent = { tab-width = 4; unit = "\\t"; };
-          # language-servers = ["csharp-ls"];
+        # name = "c-sharp";
+        # scope = "source.csharp";
+        # injection-regex = "c-?sharp";
+        # file-types = ["cs" "csx" "cake"];
+        # roots = ["sln" "csproj"];
+        # # comment-tokens = ["//" "///"];
+        # # block-comment-tokens = { start = "/*"; end = "*/"; };
+        # indent = { tab-width = 4; unit = "\\t"; };
+        # language-servers = ["csharp-ls"];
         # }
       ];
     };
