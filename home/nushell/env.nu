@@ -1,7 +1,6 @@
-$env.PATH ++= ["/run/current-system/sw/bin", $"/etc/profiles/per-user/($env.USER)/bin", $"($env.HOME)/.cargo/bin"] 
-$env.PAGER = "less -R"
+$env.PATH ++= ["/run/current-system/sw/bin", $"/etc/profiles/per-user/($env.USER)/bin", $"($env.HOME)/.cargo/bin", $"($env.DEVKITARM)/bin"] 
 
-$env.NIX_PATH=nixpkgs=flake:nixpkgs:/nix/var/nix/profiles/per-user/root/channels
+# $env.NIX_PATH=nixpkgs=flake:nixpkgs:/nix/var/nix/profiles/per-user/root/channels
 
 $env.NIX_PROFILES = [
     "/nix/var/nix/profiles/default", 
@@ -12,7 +11,6 @@ $env.NIX_PROFILES = [
 
 $env.NIX_SSL_CERT_FILE = "/etc/ssl/certs/ca-certificates.crt"
 $env.NIX_USER_PROFILE_DIR = "/nix/var/nix/profiles/per-user/pastaya"
-
 
 if ^uname == "Darwin" {
   $env.PATH = $env.PATH | prepend '/usr/bin'

@@ -1,6 +1,6 @@
 {lib, ...}: {
   programs.zed-editor = {
-    enable = true;
+    enable = false;
     extensions = ["TOML" "nix" "html" "eslint" "javascript" "JSDoc" "typescript"];
     userSettings = {
       toolbar = {

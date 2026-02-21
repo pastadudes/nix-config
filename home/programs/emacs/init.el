@@ -1,13 +1,14 @@
-;;; --- ui ---
+;; --- ui ---
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (setq inhibit-startup-screen t)
-(set-fringe-mode 10)
+(set-fringe-mode 4)
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (savehist-mode 1)
 
 ;; --- env (nix) ---
+;; remove ts
 (let ((my-paths '("/usr/bin" "/bin" "/usr/sbin" "/sbin"
                   "/run/current-system/sw/bin"
                   "/etc/profiles/per-user/pastaya/bin"
@@ -22,7 +23,7 @@
       create-lockfiles nil)
 
 ;; --- fonts and faces ---
-(set-face-attribute 'default nil :height 140)
+(set-face-attribute 'default nil :height 120)
 
 ;; set comment faces after theme loads
 (add-hook 'after-init-hook
@@ -50,6 +51,8 @@
       corfu-preselect 'prompt)
 (global-corfu-mode 1)
 
+(corfu-popupinfo-mode)
+
 (with-eval-after-load 'corfu
   (define-key corfu-map (kbd "RET") #'corfu-insert)
   (define-key corfu-map (kbd "C-n") #'corfu-next)
@@ -64,7 +67,7 @@
 
 (require 'which-key)
 (which-key-mode)
-(setq which-key-idle-delay 0.3)
+(setq which-key-idle-delay 0.1)
 
 (electric-pair-mode 1)
 
@@ -96,11 +99,6 @@
   "run the current rust project with cargo"
   (interactive) (pastaya/project-compile "cargo r"))
 
-(defun pastaya/vterm ()
-  "open or switch to vterm"
-  (interactive)
-  (if (get-buffer "*vterm*") (switch-to-buffer "*vterm*") (vterm)))
-
 (defun pastaya/mail-refresh ()
   "refresh mail with mbsync + notmuch"
   (interactive)
@@ -130,22 +128,14 @@
 (defvar pastaya/dispatch-map (make-sparse-keymap))
 (global-set-key (kbd "C-c") pastaya/dispatch-map)
 
-;; buffers
-(define-key pastaya/dispatch-map (kbd "b b") #'consult-buffer)
-(define-key pastaya/dispatch-map (kbd "b k") #'kill-current-buffer)
-(define-key pastaya/dispatch-map (kbd "b n") #'next-buffer)
-(define-key pastaya/dispatch-map (kbd "b p") #'previous-buffer)
-
 ;; search/jump
 (define-key pastaya/dispatch-map (kbd "s s") #'consult-line)
 (define-key pastaya/dispatch-map (kbd "s r") #'consult-ripgrep)
+(define-key pastaya/dispatch-map (kbd "s e") #'consult-flymake)
 (define-key pastaya/dispatch-map (kbd "j")   #'avy-goto-char-timer)
 
 ;; windows
 (winner-mode 1)
-(define-key pastaya/dispatch-map (kbd "w v") #'split-window-right)
-(define-key pastaya/dispatch-map (kbd "w s") #'split-window-below)
-(define-key pastaya/dispatch-map (kbd "w u") #'winner-undo)
 (define-key pastaya/dispatch-map (kbd "w h") #'pastaya/resize-window-left)
 (define-key pastaya/dispatch-map (kbd "w l") #'pastaya/resize-window-right)
 (define-key pastaya/dispatch-map (kbd "w j") #'pastaya/resize-window-down)
@@ -156,11 +146,9 @@
 (define-key pastaya/dispatch-map (kbd "r t") #'pastaya/cargo-test)
 (define-key pastaya/dispatch-map (kbd "r r") #'pastaya/cargo-run)
 
-;; git/mail/term
-(define-key pastaya/dispatch-map (kbd "g g") #'magit-status)
 (define-key pastaya/dispatch-map (kbd "m m") #'notmuch)
 (define-key pastaya/dispatch-map (kbd "m r") #'pastaya/mail-refresh)
-(define-key pastaya/dispatch-map (kbd "t t") #'pastaya/vterm)
+(define-key pastaya/dispatch-map (kbd "t") #'vterm)
 
 ;; --- git & langs ---
 (require 'magit)
@@ -168,7 +156,15 @@
 (magit-delta-mode)
 
 (require 'eglot)
-(setq eglot-ignored-server-capabilities nil)
+(setq-default eglot-ignored-server-capabilities '(:documentOnTypeFormattingProvider))
+(add-to-list 'eglot-server-programs '(haskell-mode "haskell-language-server-wrapper" "--lsp"))
+(add-to-list 'eglot-server-programs '(csharp-ts-mode "csharp-ls"))
+
+(add-hook 'eglot-managed-mode-hook
+          (lambda ()
+            (setq-local eldoc-idle-delay 0)
+            (add-hook 'eldoc-documentation-functions #'eglot-hover-eldoc-function 10 t)
+	    (setq-local eldoc-echo-area-display-truncation-message nil)))
 
 (require 'treesit-auto)
 (global-treesit-auto-mode)
@@ -194,14 +190,17 @@
 (defun pastaya/colorize-compilation-buffer ()
   (ansi-color-apply-on-region compilation-filter-start (point)))
 
-(add-hook 'rust-ts-mode-hook 'eglot-ensure)
 (add-hook 'compilation-filter-hook 'pastaya/colorize-compilation-buffer)
 
 ;; --- org mode ---
 (setq org-log-done 'time
       org-insert-heading-respect-content t
       org-pretty-entities t)
-;; --- elcord ---
-(require 'elcord)
-(elcord-mode)
-;; TODO: customize it
+
+;; --- magit ---
+(require 'magit)
+(setopt magit-define-global-key-bindings 'recommended)
+
+;; --- misc ---
+(setopt display-line-numbers 'relative)
+(editorconfig-mode 1)

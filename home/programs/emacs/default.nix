@@ -23,7 +23,12 @@
       marginalia
       embark
       embark-consult
-      elcord
+      tempel
+      tempel-collection
+      haskell-mode
+      purescript-mode
+      zig-mode
+      dart-mode
     ];
   };
   home.file.".emacs.d" = {

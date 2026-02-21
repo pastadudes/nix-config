@@ -28,10 +28,10 @@
           command = "${pkgs.harper}/bin/harper-ls";
           args = ["--stdio"];
         };
-        deno-lsp = {
-          command = "${pkgs.deno}/bin/deno";
-          args = ["lsp"];
-        };
+        # deno-lsp = {
+        #   command = "${pkgs.deno}/bin/deno";
+        #   args = ["lsp"];
+        # };
         # csharp-ls = {
         #   command = "${pkgs.csharp-ls}/bin/csharp-ls";
         # };
@@ -43,13 +43,13 @@
           file-types = ["txt" "eml" "md"];
           language-servers = ["harper-ls" "marksman"];
         }
-        {
-          name = "typescript-deno";
-          scope = "source.ts";
-          roots = ["deno.json"];
-          file-types = ["js" "jsx" "ts" "tsx"];
-          language-servers = ["deno-lsp"];
-        }
+        # {
+        #   name = "typescript-deno";
+        #   scope = "source.ts";
+        #   roots = ["deno.json"];
+        #   file-types = ["js" "jsx" "ts" "tsx"];
+        #   language-servers = ["deno-lsp"];
+        # }
         # {
           # name = "c-sharp";
           # scope = "source.csharp";

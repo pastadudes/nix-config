@@ -98,7 +98,7 @@
       };
 
       aerc = {
-        enable = true;
+        enable = false;
         extraConfig = {
           general = {
             unsafe-accounts-conf = true;
