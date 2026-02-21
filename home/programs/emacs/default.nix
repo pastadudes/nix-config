@@ -27,9 +27,7 @@
         tempel
         tempel-collection
         haskell-mode
-        purescript-mode
-        zig-mode
-        dart-mode
+        fsharp-mode
       ];
   };
   home.file.".emacs.d" = {
