@@ -22,6 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri.url = "github:sodiboo/niri-flake";
+    pjcs.url = "git+https://codeberg.org/pjcs/pjcs";
   };
 
   outputs = {
@@ -32,6 +33,7 @@
     nix-minecraft,
     stylix,
     niri,
+    pjcs,
     ...
   } @ inputs: {
     formatter = {

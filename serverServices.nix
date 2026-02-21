@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  pjcs,
   ...
 }: let
   modpack = pkgs.fetchPackwizModpack {
@@ -141,7 +142,7 @@ in {
     };
 
     minecraft-server = {
-      enable = true;
+      enable = false;
       eula = true;
       openFirewall = true;
       jvmOpts = "-Xms512M -Xmx3G -XX:+UseG1GC -Djava.net.preferIPv4Stack=true -XX:+UnlockExperimentalVMOptions -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:MaxGCPauseMillis=75 -XX:G1HeapRegionSize=8M -XX:InitiatingHeapOccupancyPercent=20 -XX:G1NewSizePercent=20 -XX:G1ReservePercent=15 -XX:SurvivorRatio=16";
@@ -153,17 +154,20 @@ in {
     };
   };
   systemd.services = {
-    cbg-runner = {
-      description = "the systemd service that runs uhhhh cbg";
+    pjcs-runner = {
+      description = "the systemd service that runs uhhhh pjcs";
       wantedBy = ["multi-user.target"];
       after = ["network.target"];
       serviceConfig = {
         User = "pastaya";
         Group = "users";
-        WorkingDirectory = "/home/pastaya/cbg";
-        ExecStart = "${pkgs.lix}/bin/nix develop --command cargo run --release";
+        ExecStart = "${pjcs.packages.x86_64-linux.default}/bin/pjcs.bot";
         Restart = "always";
         RestartSec = 5;
+
+        Environment = ''
+          PJCS_DATA_DIR="/var/lib/pjcs"
+        '';
       };
     };
   };
