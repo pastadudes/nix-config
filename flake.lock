@@ -201,11 +201,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771647911,
-        "narHash": "sha256-18liNHHwOmcaKCpOptE3wLW97fm5v7RTLiZBecX7km0=",
+        "lastModified": 1771683283,
+        "narHash": "sha256-WxAEkAbo8dP7qiyPM6VN4ZGAxfuBVlNBNPkrqkrXVEc=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "436b27742c996b75e2baf8e835e3b3eae0c9fbd4",
+        "rev": "c6ed3eab64d23520bcbb858aa53fe2b533725d4a",
         "type": "github"
       },
       "original": {
@@ -431,11 +431,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1771684524,
-        "narHash": "sha256-nQU9v3awlzhvGb9JFyyt7ZsIqnGybqlsz0hbjUYokSQ=",
+        "lastModified": 1771689823,
+        "narHash": "sha256-vy9M4XdajVwufaQOmxN0hHl4S3e8/rczdipKUVbRDA8=",
         "ref": "refs/heads/master",
-        "rev": "d776facb3ae9fe564846c93d517f5c797f69a79e",
-        "revCount": 39,
+        "rev": "43a7ebb3f14dc47bd970c3774ecd1ee041bf6a0e",
+        "revCount": 40,
         "type": "git",
         "url": "https://codeberg.org/pjcs/pjcs"
       },
