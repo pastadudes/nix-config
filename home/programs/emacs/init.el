@@ -159,6 +159,7 @@
 (setq-default eglot-ignored-server-capabilities '(:documentOnTypeFormattingProvider))
 (add-to-list 'eglot-server-programs '(haskell-mode "haskell-language-server-wrapper" "--lsp"))
 (add-to-list 'eglot-server-programs '(csharp-ts-mode "csharp-ls"))
+; (add-to-list 'eglot-server-programs '(fsharp-mode "fsautocomplete" "--adaptive-lsp-server-enabled"))
 
 (add-hook 'eglot-managed-mode-hook
           (lambda ()
@@ -204,3 +205,6 @@
 ;; --- misc ---
 (setopt display-line-numbers 'relative)
 (editorconfig-mode 1)
+
+(setq eglot-fsharp-server-install-dir nil)
+(setq eglot-fsharp-server-path "/run/current-system/sw/bin/")

@@ -28,6 +28,7 @@
         tempel-collection
         haskell-mode
         fsharp-mode
+        eglot-fsharp
       ];
   };
   home.file.".emacs.d" = {

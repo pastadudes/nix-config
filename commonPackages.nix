@@ -22,6 +22,7 @@
       nil
       dotnet-sdk_10 # trying c# cuz why not
       csharp-ls
+      fsautocomplete
       # roslyn-ls
       # typescript-language-server
       # bun

@@ -12,7 +12,7 @@
   fabricVersion = modpack.manifest.versions.fabric;
   serverVersion = lib.replaceStrings ["."] ["_"] "fabric-${mcVersion}";
 
-  pjcs = inputs.pjcs.packages.x86_64-linux.default;
+  pjcs = inputs.pjcs.packages.${pkgs.system}.default;
 in {
   services = {
     xserver.enable = false;
@@ -44,6 +44,7 @@ in {
       };
 
       # please work
+      # this didn't work
       # virtualHosts."zellij.pastaya.net" = {
       #   # addSSL = true;
       #   locations."/" = {
@@ -62,6 +63,8 @@ in {
       #   # '';
 
       # };
+      #
+      # gave up on my own git host
       # virtualHosts."git.pastaya.net" = {
       #   locations."/" = {
       #     proxyPass = "http://localhost:6000";
@@ -79,6 +82,7 @@ in {
       #     }
       # '';
     };
+    # 
     # use gitea instead cuz it has captcha
     # forgejo = {
     #   enable = true;
@@ -161,9 +165,9 @@ in {
       wantedBy = ["multi-user.target"];
       after = ["network.target"];
       serviceConfig = {
-        User = "pastaya";
-        Group = "users";
+        DynamicUser = true;
         ExecStart = "${pjcs}/bin/pjcs.bot";
+        StateDirectory = "pjcs";
         Restart = "always";
         RestartSec = 5;
 
