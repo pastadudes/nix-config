@@ -114,6 +114,7 @@
 (require 'consult)
 (global-set-key (kbd "C-s") #'consult-line)
 (global-set-key (kbd "M-y") #'consult-yank-pop)
+(global-set-key (kbd "M-g M-g") #'consult-goto-line)
 
 ;; replace standard buffer switching with consult
 (global-set-key (kbd "C-x b") #'consult-buffer)     ;; switch to buffer
@@ -150,6 +151,14 @@
 (define-key pastaya/dispatch-map (kbd "m r") #'pastaya/mail-refresh)
 (define-key pastaya/dispatch-map (kbd "t") #'vterm)
 
+;; --- vterm ---
+(defun pastaya/term-hook ()
+  (display-line-numbers-mode -1)
+  (corfu-mode -1)
+  (setq-local read-process-output-max (* 1024 1024))
+)
+(add-hook 'vterm-mode-hook #'pastaya/term-hook)
+
 ;; --- git & langs ---
 (require 'magit)
 (require 'magit-delta)
@@ -159,7 +168,7 @@
 (setq-default eglot-ignored-server-capabilities '(:documentOnTypeFormattingProvider))
 (add-to-list 'eglot-server-programs '(haskell-mode "haskell-language-server-wrapper" "--lsp"))
 (add-to-list 'eglot-server-programs '(csharp-ts-mode "csharp-ls"))
-; (add-to-list 'eglot-server-programs '(fsharp-mode "fsautocomplete" "--adaptive-lsp-server-enabled"))
+;; (add-to-list 'eglot-server-programs '(fsharp-mode "fsautocomplete" "--adaptive-lsp-server-enabled"))
 
 (add-hook 'eglot-managed-mode-hook
           (lambda ()
@@ -206,5 +215,5 @@
 (setopt display-line-numbers 'relative)
 (editorconfig-mode 1)
 
-(setq eglot-fsharp-server-install-dir nil)
-(setq eglot-fsharp-server-path "/run/current-system/sw/bin/")
+; (setq eglot-fsharp-server-install-dir nil)
+; (setq eglot-fsharp-server-path "/run/current-system/sw/bin/")

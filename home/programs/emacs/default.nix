@@ -16,19 +16,20 @@
         consult
         orderless
         vterm
-        typescript-mode
+        # typescript-mode
         treesit-auto
-        kotlin-ts-mode
+        # kotlin-ts-mode
         envrc
         avy
         marginalia
         embark
         embark-consult
-        tempel
-        tempel-collection
+        # tempel
+        # tempel-collection
         haskell-mode
-        fsharp-mode
-        eglot-fsharp
+        # fsharp-mode
+        # eglot-fsharp
+        scala-mode
       ];
   };
   home.file.".emacs.d" = {
