@@ -1,4 +1,4 @@
-$env.PATH ++= ["/run/current-system/sw/bin", $"/etc/profiles/per-user/($env.USER)/bin", $"($env.HOME)/.cargo/bin", $"($env.DEVKITARM)/bin"] 
+$env.PATH ++= ["/run/current-system/sw/bin", $"/etc/profiles/per-user/($env.USER)/bin", $"($env.HOME)/.cargo/bin"]
 
 # $env.NIX_PATH=nixpkgs=flake:nixpkgs:/nix/var/nix/profiles/per-user/root/channels
 
@@ -15,7 +15,7 @@ $env.NIX_USER_PROFILE_DIR = "/nix/var/nix/profiles/per-user/pastaya"
 if ^uname == "Darwin" {
   $env.PATH = $env.PATH | prepend '/usr/bin'
 
-  $env.PATH ++= ["/usr/local/bin/"]
+  $env.PATH ++= ["/usr/local/bin/" $"($env.DEVKITARM)/bin"]
 }
 
 # $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
