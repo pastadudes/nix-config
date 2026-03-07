@@ -34,12 +34,14 @@ in {
     };
 
     caddy = {
-      "pastaya.dev" = {
-        extraConfig = ''
-          root * /var/www/pastaya.dev
-          file_server browse
-          encode zstd gzip
-        '';
+      virtualHosts = {
+        "pastaya.dev" = {
+          extraConfig = ''
+            root * /var/www/pastaya.dev
+            file_server browse
+            encode zstd gzip
+          '';
+        };
       };
       # setup ttyd later
     };
