@@ -37,6 +37,7 @@ in {
       virtualHosts = {
         "pastaya.dev" = {
           extraConfig = ''
+            bind 0.0.0.0
             root * /var/www/pastaya.dev
             file_server browse
             encode zstd gzip
