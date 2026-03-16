@@ -24,6 +24,7 @@
     extraPortals = [
       pkgs.xdg-desktop-portal-gnome
     ];
+    config.common.default = "*";
   };
   # anything beyond that is best effort
   # no testing has been done

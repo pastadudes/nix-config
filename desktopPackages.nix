@@ -1,36 +1,36 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    firefox
-    fuzzel
-    hyprpaper
-    hyprpicker
+    # firefox
+    # fuzzel
+    # hyprpaper
+    # hyprpicker
     easyeffects
     hyprlock
     dunst
     hyprpolkitagent
     udiskie
-    lua51Packages.lua
-    luarocks
-    xwayland-satellite
+    # lua51Packages.lua
+    # luarocks
+    # xwayland-satellite
     # ladspaPlugins
     # calf
     # lsp-plugins
     # alsa-lib
 
     # ONLY ENABLE THE ABOVE WHEN PIPEWIRE_SINK_CONF.NIX WORKS!!!!
-    remmina
-    git-credential-oauth
+    # remmina
+    # git-credential-oauth
     # i don't remember this
     # anydesk
-    pass
-    gnupg
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-gnome
+    # pass
+    # gnupg
+    # xdg-desktop-portal-gtk
+    # xdg-desktop-portal-gnome
     # vesktop
-    discord
-    vencord
+    # discord
+    # vencord
     overlayed
-    ckan
+    # ckan
 
     # games
     prismlauncher
@@ -40,7 +40,7 @@
     # taisei
 
     # terminal emulator
-    foot
+    # foot
 
     # wayland utilities
     # grimblast
@@ -48,17 +48,18 @@
     cliphist
     wl-clipboard
     wlogout
-    waybar
+    # waybar
 
     # drawing
     krita
 
     # graphics
-    intel-media-driver
+    # intel-media-driver
 
     # ???
-    openutau
-    zrythm
+    # disable because it takes too long
+    # openutau
+    # zrythm
   ];
   # services.xserver.desktopManager.xterm.enable = false;
   services.xserver.excludePackages = [pkgs.xterm];
