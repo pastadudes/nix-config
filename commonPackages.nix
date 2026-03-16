@@ -28,6 +28,8 @@
       # bun
       # kotlin
       # kotlin-language-server
+      # dart
+      # flutter
 
       # archives
       zip

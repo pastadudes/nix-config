@@ -24,12 +24,12 @@
         marginalia
         embark
         embark-consult
-        # tempel
-        # tempel-collection
+        yasnippet
         haskell-mode
         # fsharp-mode
         # eglot-fsharp
-        scala-mode
+        # scala-mode
+        dart-mode
       ];
   };
   home.file.".emacs.d" = {

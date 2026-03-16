@@ -1,0 +1,7 @@
+# name: netcord module
+# key: netcordmod
+# --
+[SlashCommand("$1", "${2:some random commands!}")]
+public sealed class `(file-name-base (buffer-file-name))`($3) : ApplicationCommandModule<ApplicationCommandContext> {
+  $0
+}

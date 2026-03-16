@@ -215,5 +215,9 @@
 (setopt display-line-numbers 'relative)
 (editorconfig-mode 1)
 
+;; --- snippets ---
+(global-set-key (kbd "M-e") #'yas-expand)
+(yas-global-mode)
+
 ; (setq eglot-fsharp-server-install-dir nil)
 ; (setq eglot-fsharp-server-path "/run/current-system/sw/bin/")
