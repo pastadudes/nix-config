@@ -20,7 +20,8 @@
     # ONLY ENABLE THE ABOVE WHEN PIPEWIRE_SINK_CONF.NIX WORKS!!!!
     remmina
     git-credential-oauth
-    anydesk
+    # i don't remember this
+    # anydesk
     pass
     gnupg
     xdg-desktop-portal-gtk
