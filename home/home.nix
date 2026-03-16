@@ -11,7 +11,8 @@
       ./email.nix
       ./programs
     ]
-    ++ lib.optionals (!osConfig.isServer) [./services.nix];
+    ++ lib.optionals (!osConfig.isServer) [./services.nix]
+    ++ lib.optionals (!osConfig.isServer && pkgs.stdenv.isLinux) [./linux];
 
   nixpkgs = {
     config = {
