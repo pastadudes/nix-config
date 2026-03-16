@@ -11,8 +11,9 @@
       ./email.nix
       ./programs
     ]
-    ++ lib.optionals (!osConfig.isServer) [./services.nix]
-    ++ lib.optionals (!osConfig.isServer && pkgs.stdenv.isLinux) [./linux];
+    ++ lib.optionals (!osConfig.isServer) [./services.nix];
+    # will infinite recurse here.
+    # ++ lib.optionals (!osConfig.isServer && pkgs.stdenv.isLinux) [./linux];
 
   nixpkgs = {
     config = {

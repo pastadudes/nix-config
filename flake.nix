@@ -120,6 +120,7 @@
               ./security/linux.nix
               stylix.nixosModules.stylix
               niri.nixosModules.niri
+              ./home/linux
 
               home-manager.nixosModules.home-manager
               {
