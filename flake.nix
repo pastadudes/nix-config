@@ -120,14 +120,22 @@
               ./security/linux.nix
               stylix.nixosModules.stylix
               niri.nixosModules.niri
-              ./home/linux
 
               home-manager.nixosModules.home-manager
               {
                 home-manager.extraSpecialArgs = {inherit inputs;};
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.users.pastaya = ./home/home.nix;
+                # home-manager.users.pastaya = { [
+                #   ./home/home.nix
+                #   ./home/linux
+                # ] };
+                home-manager.users.pastaya = {
+                  imports = [
+                    ./home/home.nix
+                    ./home/linux
+                  ];
+                };
                 home-manager.backupFileExtension = "before-home-manager";
               }
             ];
