@@ -19,7 +19,12 @@
     cloudflare-warp.enable = true;
   };
 
-  xdg.portal.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gnome
+    ];
+  };
   # anything beyond that is best effort
   # no testing has been done
   systemd.user.services = {
