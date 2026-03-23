@@ -9,7 +9,7 @@
 
 ;; --- env (nix) ---
 ;; remove ts
-(let ((my-paths '("/usr/bin" "/bin" "/usr/sbin" "/sbin"
+(let ((my-paths '("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/bin"
                   "/run/current-system/sw/bin"
                   "/etc/profiles/per-user/pastaya/bin"
                   "/Users/pastaya/.cargo/bin"

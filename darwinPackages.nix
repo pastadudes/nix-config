@@ -41,9 +41,9 @@
       "amar1729/formulae"
     ];
 
-    # brews = [
-    #   "dart-sdk"
-    # ];
+    brews = [
+      "dart-sdk"
+    ];
 
     casks = [
       "osu"

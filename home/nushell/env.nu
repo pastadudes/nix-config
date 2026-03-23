@@ -16,6 +16,7 @@ if ^uname == "Darwin" {
   $env.PATH = $env.PATH | prepend '/usr/bin'
 
   $env.PATH ++= ["/usr/local/bin/" $"($env.DEVKITARM)/bin"]
+  $env.PATH = $env.PATH | append /usr/local/bin/
 }
 
 # $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
