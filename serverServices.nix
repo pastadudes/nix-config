@@ -21,7 +21,7 @@ in {
 
     openssh = {
       enable = true;
-      ports = [22];
+      ports = [22 2055];
       settings = {
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
