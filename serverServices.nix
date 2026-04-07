@@ -91,22 +91,23 @@ in {
       };
     };
   };
-  systemd.services = {
-    pjcs-runner = {
-      description = "the systemd service that runs uhhhh pjcs";
-      wantedBy = ["multi-user.target"];
-      after = ["network.target"];
-      serviceConfig = {
-        DynamicUser = true;
-        ExecStart = "${pjcs}/bin/pjcs.bot";
-        StateDirectory = "pjcs";
-        Restart = "always";
-        RestartSec = 5;
+  # TODO: fix
+  # systemd.services = {
+  #   pjcs-runner = {
+  #     description = "the systemd service that runs uhhhh pjcs";
+  #     wantedBy = ["multi-user.target"];
+  #     after = ["network.target"];
+  #     serviceConfig = {
+  #       DynamicUser = true;
+  #       ExecStart = "${pjcs}/bin/pjcs.bot";
+  #       StateDirectory = "pjcs";
+  #       Restart = "always";
+  #       RestartSec = 5;
 
-        Environment = ''
-          PJCS_DATA_DIR="/var/lib/pjcs"
-        '';
-      };
-    };
-  };
+  #       Environment = ''
+  #         PJCS_DATA_DIR="/var/lib/pjcs"
+  #       '';
+  #     };
+  #   };
+  # };
 }
