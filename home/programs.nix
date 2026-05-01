@@ -31,6 +31,10 @@
       };
 
       direnv = {
+        # still not fixed
+        package = pkgs.direnv.overrideAttrs (oldAttrs: {
+          doCheck = false;
+        });
         enable = true;
         enableNushellIntegration = true;
         silent = true;
@@ -206,6 +210,7 @@
       };
 
       qutebrowser = {
+        package = null;
         enable = true;
         greasemonkey = [
           (pkgs.fetchurl {

@@ -35,7 +35,7 @@ in {
 
     caddy = {
       virtualHosts = {
-        "pastaya.dev" = {
+        "http://pastaya.dev" = {
           extraConfig = ''
             bind 0.0.0.0
             root * /var/www/pastaya.dev

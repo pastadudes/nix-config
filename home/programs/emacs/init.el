@@ -1,9 +1,13 @@
+;; -- make emacs FASTER --
+(setopt read-process-output-max (* 1024 1024))
+(setopt gc-cons-threshold (* 50 1024 1024))
+
 ;; --- ui ---
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (setq inhibit-startup-screen t)
-(set-fringe-mode 4)
+(set-fringe-mode 2)
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (savehist-mode 1)
 
@@ -24,12 +28,11 @@
 
 ;; --- fonts and faces ---
 (set-face-attribute 'default nil :height 120)
-
-;; set comment faces after theme loads
 (add-hook 'after-init-hook
           (lambda ()
             (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
-            (set-face-attribute 'font-lock-comment-delimiter-face nil :slant 'italic)))
+            (set-face-attribute 'font-lock-comment-delimiter-face nil :slant 'italic)
+	    (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)))
 
 ;; --- completion (vertico/corfu/consult/marginalia) ---
 (require 'vertico)
@@ -39,31 +42,57 @@
 (marginalia-mode 1)
 
 (require 'orderless)
-(setq completion-styles '(orderless basic)
+(setopt completion-styles '(orderless basic)
       completion-category-defaults nil
-      completion-category-overrides '((file (styles basic partial-completion))))
+      completion-category-overrides '((file (styles basic partial-completion))
+				      (eglot (styles basic))
+				      (eglot-capf (styles basic))))
 
 (require 'corfu)
-(setq corfu-auto t
+(setopt corfu-auto t
       corfu-auto-delay 0.1
       corfu-auto-prefix 1
       corfu-cycle t
-      corfu-preselect 'prompt)
+      corfu-preselect 'first
+      corfu-quit-at-boundary t)
 (global-corfu-mode 1)
 
-(corfu-popupinfo-mode)
+;; ;; --- completion (vertico/corfu/consult/marginalia) ---
+;; ;; i really hate how suggestions are hidden to me sometimes (because it guessed some random function that i dont want
+;; ;; think thats orderless fault
+;; (require 'vertico)
+;; (vertico-mode 1)
 
-(with-eval-after-load 'corfu
-  (define-key corfu-map (kbd "RET") #'corfu-insert)
-  (define-key corfu-map (kbd "C-n") #'corfu-next)
-  (define-key corfu-map (kbd "C-p") #'corfu-previous))
+;; (require 'marginalia)
+;; (marginalia-mode 1)
+
+;; (require 'orderless)
+;; (setq completion-styles '(orderless basic)
+;;       completion-category-defaults nil
+;;       completion-category-overrides '((file (styles basic partial-completion))))
+
+;; (require 'corfu)
+;; (setq corfu-auto t
+;;       corfu-auto-delay 0.1
+;;       corfu-auto-prefix 1
+;;       corfu-cycle t
+;;       corfu-preselect 'prompt)
+;; (global-corfu-mode 1)
+
+;; (corfu-popupinfo-mode)
+
+;; (with-eval-after-load 'corfu
+;;   (define-key corfu-map (kbd "RET") #'corfu-insert)
+;;   (define-key corfu-map (kbd "C-n") #'corfu-next)
+;;   (define-key corfu-map (kbd "C-p") #'corfu-previous))
 
 (require 'kind-icon)
 (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
 
 (require 'cape)
-(add-to-list 'completion-at-point-functions #'cape-dabbrev)
-(add-to-list 'completion-at-point-functions #'cape-file)
+(add-to-list 'completion-at-point-functions #'cape-dabbrev t)
+(add-to-list 'completion-at-point-functions #'cape-file t)
+;; (add-to-list 'completion-at-point-functions #'cape-keyword)
 
 (require 'which-key)
 (which-key-mode)
@@ -105,13 +134,25 @@
   (shell-command "mbsync -a && notmuch new")
   (message "email refreshed!"))
 
-(defun pastaya/resize-window-left (step) (interactive "p") (adjust-window-trailing-edge (selected-window) (- step) t))
-(defun pastaya/resize-window-right (step) (interactive "p") (adjust-window-trailing-edge (selected-window) step t))
-(defun pastaya/resize-window-down (step) (interactive "p") (adjust-window-trailing-edge (selected-window) step nil))
-(defun pastaya/resize-window-up (step) (interactive "p") (adjust-window-trailing-edge (selected-window) (- step) nil))
+(defun pastaya/resize-window-left (step)
+  (interactive "p")
+  (adjust-window-trailing-edge (selected-window) (- step) t))
+
+(defun pastaya/resize-window-right (step)
+  (interactive "p")
+  (adjust-window-trailing-edge (selected-window) step t))
+
+(defun pastaya/resize-window-down (step)
+  (interactive "p")
+   (adjust-window-trailing-edge (selected-window) step nil))
+
+(defun pastaya/resize-window-up (step)
+  (interactive "p")
+  (adjust-window-trailing-edge (selected-window) (- step) nil))
 
 ;; --- search/jump & global remaps ---
 (require 'consult)
+; probably more but whatever
 (global-set-key (kbd "C-s") #'consult-line)
 (global-set-key (kbd "M-y") #'consult-yank-pop)
 (global-set-key (kbd "M-g M-g") #'consult-goto-line)
@@ -155,8 +196,10 @@
 (defun pastaya/term-hook ()
   (display-line-numbers-mode -1)
   (corfu-mode -1)
-  (setq-local read-process-output-max (* 1024 1024))
-)
+  (electric-indent-mode -1)
+  (electric-pair-mode -1)
+  (setq-local read-process-output-max (* 1024 1024)))
+
 (add-hook 'vterm-mode-hook #'pastaya/term-hook)
 
 ;; --- git & langs ---
@@ -165,7 +208,11 @@
 (magit-delta-mode)
 
 (require 'eglot)
-(setq-default eglot-ignored-server-capabilities '(:documentOnTypeFormattingProvider))
+; lsp for csharp has headaches with electric-pair-mode
+(add-hook 'csharp-ts-mode-hook
+	  (lambda ()
+	    (setq-default eglot-ignored-server-capabilities '(:documentOnTypeFormattingProvider))))
+
 (add-to-list 'eglot-server-programs '(haskell-mode "haskell-language-server-wrapper" "--lsp"))
 (add-to-list 'eglot-server-programs '(csharp-ts-mode "csharp-ls"))
 ;; (add-to-list 'eglot-server-programs '(fsharp-mode "fsautocomplete" "--adaptive-lsp-server-enabled"))
@@ -178,6 +225,7 @@
 
 (require 'treesit-auto)
 (global-treesit-auto-mode)
+; not that ill use most of them anyways...
 (setq major-mode-remap-alist
       '((java-mode . java-ts-mode)
         (rust-mode . rust-ts-mode)
@@ -191,6 +239,8 @@
         (csharp-mode . csharp-ts-mode)
         (go-mode . go-ts-mode)
         (python-mode . python-ts-mode)))
+
+(setopt treesit-font-lock-level 4)
 
 (require 'envrc)
 (envrc-global-mode)
@@ -219,5 +269,29 @@
 (global-set-key (kbd "M-e") #'yas-expand)
 (yas-global-mode)
 
-; (setq eglot-fsharp-server-install-dir nil)
-; (setq eglot-fsharp-server-path "/run/current-system/sw/bin/")
+;; --- paredit ---
+(require 'paredit)
+(eval-after-load 'paredit
+  '(progn
+     (define-key paredit-mode-map (kbd "RET") 'paredit-newline)
+     (define-key paredit-mode-map (kbd "C-j") 'paredit-newline)))
+
+(defun pastaya/enable-paredit ()
+  (setq-local electric-pair-mode nil)
+  (setq-local electric-indent-mode nil)
+  (paredit-mode +1))
+
+(defun pastaya/enable-paredit-minibuffer ()
+  (pastaya/enable-paredit)
+  (local-set-key (kbd "RET") 'exit-minibuffer))
+
+; clojure-mode dervies from lisp-mode
+(dolist (hook '(lisp-mode-hook
+		emacs-lisp-mode-hook
+		scheme-mode-hook
+		lisp-interaction-mode-hook
+		eval-expression-minibuffer-setup-hook
+		clojure-mode-hook))
+  (add-hook hook #'pastaya/enable-paredit t))
+
+(add-hook 'eval-expression-minibuffer-setup-hook #'pastaya/enable-paredit-minibuffer t)

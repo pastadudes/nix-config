@@ -30,6 +30,12 @@
         # eglot-fsharp
         # scala-mode
         dart-mode
+        realgud
+        realgud-lldb
+        realgud-jdb
+        paredit # impossible to write lisp without it
+        clojure-mode
+        cider
       ];
   };
   home.file.".emacs.d" = {
